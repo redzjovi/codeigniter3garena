@@ -11,6 +11,8 @@
 	<link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/bootstrap/docs/examples/navbar-fixed-top/navbar-fixed-top_2.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/bootstrap/docs/examples/signin/signin_2.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
 
 	<script src="<?php echo base_url(); ?>assets/jquery/dist/jquery.min.js"></script>
 </head>

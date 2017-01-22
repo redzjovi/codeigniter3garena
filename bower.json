@@ -1,0 +1,26 @@
+{
+  "name": "codeigniter3app",
+  "homepage": "https://github.com/redzjovi/codeigniter3app",
+  "authors": [
+    "Jovi <redzjovi@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "datatables.net": "^2.1.1",
+    "datatables.net-bs": "^2.1.1",
+    "datatables.net-colreorder": "^1.3.2",
+    "datatables.net-responsive": "^2.1.1",
+    "datatables.net-responsive-bs": "^2.1.1"
+  }
+}

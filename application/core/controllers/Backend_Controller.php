@@ -14,7 +14,7 @@ class Backend_Controller extends MY_Controller
 	public function view($view, $vars = array(), $return = FALSE, $layout = 'default')
 	{
 		// $vars = array_merge($this->config_bootstrap, $vars);
-		// $vars['ion_auth_user'] = $this->ion_auth->user()->row();
+		$vars['ion_auth_user'] = $this->ion_auth->user()->row();
 		// $vars['left_menu'] = $this->Post_Categories_Model->read();
 		// $vars['user_group'] = $this->ion_auth->get_users_groups()->result();
 

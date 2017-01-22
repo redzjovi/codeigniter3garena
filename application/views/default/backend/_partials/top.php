@@ -1,5 +1,5 @@
 <!-- Static navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -8,56 +8,117 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <!-- <a class="navbar-brand" href="#"></a> -->
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+            <?php
+            $navbar = [
+                [
+                    'class' => '', 'icon' => 'glyphicon glyphicon-home', 'text' => lang('menu_dashboard'), 'url' => 'backend/dashboard', 'url_external' => '',
+                ],
+                [
+                    'class' => '', 'icon' => 'glyphicon glyphicon-cog', 'text' => lang('menu_settings'), 'url' => '#', 'url_external' => '',
+                    'child' => [
+                        ['class' => '', 'icon' => '', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
+                        ['class' => '', 'icon' => '', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
+                    ],
+                ],
+            ];
+            ?>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
+                <?php
+                foreach ((array) $navbar as $row)
+                {
+                    if (empty($row['child']))
+                    {
+                        echo '<li class="'.$row['class'].'">';
+                        echo    '<a href="'.( ($row['url_external']) ? $row['url_external'] : site_url($row['url']) ).'">';
+                        echo        '<i class="'.$row['icon'].'"></i> ';
+                        echo        $row['text'];
+                        echo    '</a>';
+                        echo '</li>';
+                    }
+                    else
+                    {
+                        echo '<li class="dropdown">';
+                        echo    '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">';
+                        echo        '<i class="'.$row['icon'].'"></i> ';
+                        echo        $row['text'].' <i class="caret"></i>';
+                        echo    '</a>';
+                        echo    '<ul class="dropdown-menu">';
+                        foreach ((array) $row['child'] as $child)
+                        {
+                            echo '<li class="'.$child['class'].'">';
+                            echo    '<a href="'.( ($child['url_external']) ? $child['url_external'] : site_url($child['url']) ).'">';
+                            echo        '<i class="'.$child['icon'].'"></i> ';
+                            echo        $child['text'];
+                            echo    '</a>';
+                            echo '</li>';
+                        }
+                        echo    '</ul>';
+                        echo '</li>';
+                    }
+                }
+                ?>
+            </ul><!--/.nav navbar-nav -->
 
             <?php
             $navbar_right = [
-                'class' => '', 'icon' => '', 'text' => 'Hi', 'url' => '#',
-                'child' => [
-                    ['icon' => '', 'text' => 'Profile', 'url' => '#'],
-                    ['class' => 'divider', 'icon' => '', 'text' => 'Profile', 'url' => '#'],
-                    ['class' => 'divider', 'icon' => '', 'text' => lang('sign_out'), 'url' => '#'],
+                [
+                    'class' => '', 'icon' => 'glyphicon glyphicon-globe',
+                    'text' => ucwords($this->session->userdata('site_language') ? $this->session->userdata('site_language') : $this->config->item('language')),
+                    'url' => '#', 'url_external' => '',
+                    'child' => [
+                        ['class' => '', 'icon' => '', 'text' => 'English', 'url' => 'language/switch_language/english', 'url_external' => ''],
+                        ['class' => '', 'icon' => '', 'text' => 'Indonesian', 'url' => 'language/switch_language/indonesian', 'url_external' => ''],
+                    ],
+                ],
+                [
+                    'class' => '', 'icon' => 'glyphicon glyphicon-user', 'text' => ($ion_auth_user->first_name.' '.$ion_auth_user->last_name), 'url' => '#', 'url_external' => '',
+                    'child' => [
+                        // ['class' => '', 'icon' => '', 'text' => 'Profile', 'url' => '#', 'url_external' => ''],
+                        // ['class' => 'divider', 'icon' => '', 'text' => '', 'url' => '#', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-off', 'text' => lang('sign_out'), 'url' => 'backend/admin/logout', 'url_external' => ''],
+                    ],
                 ],
             ];
             ?>
             <ul class="nav navbar-nav navbar-right">
-                <?php foreach ((array) $navbar_right as $row) : ?>
-                    
-                <?php endforeach; ?>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="active"><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
+                <?php
+                foreach ((array) $navbar_right as $row)
+                {
+                    if (empty($row['child']))
+                    {
+                        echo '<li class="'.$row['class'].'">';
+                        echo    '<a href="'.( ($row['url_external']) ? $row['url_external'] : site_url($row['url']) ).'">';
+                        echo        '<i class="'.$row['icon'].'"></i> ';
+                        echo        $row['text'];
+                        echo    '</a>';
+                        echo '</li>';
+                    }
+                    else
+                    {
+                        echo '<li class="dropdown">';
+                        echo    '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">';
+                        echo        '<i class="'.$row['icon'].'"></i> ';
+                        echo        $row['text'].' <i class="caret"></i>';
+                        echo    '</a>';
+                        echo    '<ul class="dropdown-menu">';
+                        foreach ((array) $row['child'] as $child)
+                        {
+                            echo '<li class="'.$child['class'].'">';
+                            echo    '<a href="'.( ($child['url_external']) ? $child['url_external'] : site_url($child['url']) ).'">';
+                            echo        '<i class="'.$child['icon'].'"></i> ';
+                            echo        $child['text'];
+                            echo    '</a>';
+                            echo '</li>';
+                        }
+                        echo    '</ul>';
+                        echo '</li>';
+                    }
+                }
+                ?>
+            </ul><!--/.nav navbar-nav navbar-right -->
         </div><!--/.nav-collapse -->
     </div>
 </nav>

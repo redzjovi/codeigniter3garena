@@ -6,9 +6,8 @@
 	<div class="container-fluid">
 		<?php $this->load->view($messages); ?>
 
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<h1><?php echo $page_title; ?></h1>
+		<div class="header">
+			<h3><?php echo $page_title; ?></h3>
 			<?php if (isset($breadcrumb)) : ?>
 				<ol class="breadcrumb">
 					<?php foreach ((array) $breadcrumb  as $value) : ?>
@@ -23,15 +22,12 @@
 					<?php endforeach; ?>
 				</ol>
 			<?php endif; ?>
-		</section>
+		</div>
 
-		<section class="content">
-			<!-- Main content -->
+		<div class="content">
 			<?php $this->load->view($view); ?>
-			<!-- /.content -->
-		</section>
+		</div>
 	</div>
-	<!-- /.content-wrapper -->
 
 	<?php // $this->load->view($right); ?>
 
