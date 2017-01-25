@@ -19,8 +19,9 @@
                 [
                     'class' => '', 'icon' => 'glyphicon glyphicon-cog', 'text' => lang('menu_settings'), 'url' => '#', 'url_external' => '',
                     'child' => [
-                        ['class' => '', 'icon' => '', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
-                        ['class' => '', 'icon' => '', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-eye-open', 'text' => lang('menu_privileges'), 'url' => 'backend/privileges', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-th-large', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-user', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
                     ],
                 ],
             ];

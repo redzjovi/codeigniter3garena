@@ -1,12 +1,13 @@
 <?php echo anchor(site_url('backend/groups/create'), lang('create'), array('class' => 'btn btn-primary btn-sm')); ?>
 <br /><br />
 
-<table class="display nowrap responsive table table-bordered table-hover table-striped" id="table" width="100%">
+<table class="table table-bordered table-hover table-striped" id="table" width="100%">
 	<thead>
 		<tr>
 			<th><?php echo lang('no'); ?></th>
 			<th><?php echo lang('group_name'); ?></th>
 			<th><?php echo lang('group_description'); ?></th>
+            <th><?php echo lang('group_privileges'); ?></th>
 			<th><?php echo lang('action'); ?></th>
 		</tr>
 	</thead>
@@ -16,6 +17,7 @@
 				<td></td>
 				<td><?php echo $group->name; ?></td>
 				<td><?php echo $group->description; ?></td>
+                <td><?php echo anchor(site_url('backend/group_privileges/update/'.$group->id), lang('manage')); ?></td>
 				<td>
 					<?php echo anchor(site_url('backend/groups/update/'.$group->id), lang('update'), array('class' => 'btn btn-success btn-sm')); ?>
 					<?php if ( ! in_array($group->name, array('admin','members'))) : ?>
@@ -30,10 +32,18 @@
 <script>
 $(function () {
 	var t = $('#table').DataTable({
-		colReorder: true
+		colReorder: true,
+        columns: [
+            { 'orderable': false },
+            null,
+            null,
+            { 'orderable': false },
+            { 'orderable': false },
+        ],
+		responsive: true,
 	});
 	t.on( 'order.dt search.dt', function () {
-		t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+		t.column(0, {search:'applied'}).nodes().each( function (cell, i) {
 			cell.innerHTML = i+1;
 		} );
 	} ).draw();

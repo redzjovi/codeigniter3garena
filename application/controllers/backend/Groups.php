@@ -20,7 +20,7 @@ class Groups extends Backend_Controller
 	function create()
 	{
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_admin')),
+			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups'), 'url' => site_url('backend/groups')),
 			array('text' => lang('menu_group_create')),
 		);
@@ -47,7 +47,7 @@ class Groups extends Backend_Controller
 	{
 		$group_id = $this->input->post('group_id') ? $this->input->post('group_id') : $group_id;
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_admin')),
+			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups'), 'url' => site_url('backend/groups')),
 			array('text' => lang('menu_group_update')),
 		);
@@ -65,7 +65,7 @@ class Groups extends Backend_Controller
 			}
 			else
 			{
-				$this->session->set_flashdata('message_danger', 'The group doesn\'t exist.');
+				$this->session->set_flashdata('message_danger', lang('data_not_exist'));
 				redirect('backend/groups');
 			}
 			$this->view('groups/update', $vars);
