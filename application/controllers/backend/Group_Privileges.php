@@ -9,6 +9,8 @@ class Group_Privileges extends Backend_Controller
 
 	function update($id = NULL)
 	{
+		$this->Privileges_Model->has_privilege('backend_group_privileges_update');
+
 		$id = $this->input->post('id') ? $this->input->post('id') : $id;
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),

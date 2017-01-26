@@ -1,13 +1,15 @@
 <?php
 class Users extends Backend_Controller
 {
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
 	}
 
-	public function index($group_id = NULL)
+	function index($group_id = NULL)
 	{
+		$this->Privileges_Model->has_privilege('backend_users');
+
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users')),
@@ -21,8 +23,10 @@ class Users extends Backend_Controller
 		$this->view('users/index', $vars);
 	}
 
-	public function create()
+	function create()
 	{
+		$this->Privileges_Model->has_privilege('backend_user_create');
+
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users'), 'url' => site_url('backend/users')),
@@ -64,8 +68,10 @@ class Users extends Backend_Controller
 		}
 	}
 
-	public function update($user_id = NULL)
+	function update($user_id = NULL)
 	{
+		$this->Privileges_Model->has_privilege('backend_user_update');
+
 		$user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -138,8 +144,10 @@ class Users extends Backend_Controller
 		}
 	}
 
-	public function delete($user_id = NULL)
+	function delete($user_id = NULL)
 	{
+		$this->Privileges_Model->has_privilege('backend_user_delete');
+
 		$this->ion_auth->delete_user($user_id);
 		$this->session->set_flashdata('message_success', $this->ion_auth->messages());
 		redirect('backend/users');

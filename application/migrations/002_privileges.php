@@ -27,6 +27,7 @@ class Migration_Privileges extends CI_Migration
 			array('privilege_code' => 'backend_privilege_create', 'privilege_name' => 'Backend Privilege Create'),
 			array('privilege_code' => 'backend_privilege_delete', 'privilege_name' => 'Backend Privilege Delete'),
 			array('privilege_code' => 'backend_privilege_update', 'privilege_name' => 'Backend Privilege Update'),
+			array('privilege_code' => 'backend_settings', 'privilege_name' => 'Backend Settings View'),
 			array('privilege_code' => 'backend_users', 'privilege_name' => 'Backend Users View'),
 			array('privilege_code' => 'backend_user_create', 'privilege_name' => 'Backend User Create'),
 			array('privilege_code' => 'backend_user_delete', 'privilege_name' => 'Backend User Delete'),
@@ -59,6 +60,7 @@ class Migration_Privileges extends CI_Migration
 			array('group_id' => '1', 'privilege_id' => '13'),
 			array('group_id' => '1', 'privilege_id' => '14'),
 			array('group_id' => '1', 'privilege_id' => '15'),
+			array('group_id' => '1', 'privilege_id' => '16'),
 		);
 		$this->db->insert_batch('group_privileges', $data);
 

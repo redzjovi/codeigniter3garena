@@ -8,6 +8,8 @@ class Groups extends Backend_Controller
 
 	function index()
 	{
+		$this->Privileges_Model->has_privilege('backend_groups');
+
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups')),
@@ -19,6 +21,8 @@ class Groups extends Backend_Controller
 
 	function create()
 	{
+		$this->Privileges_Model->has_privilege('backend_group_create');
+
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups'), 'url' => site_url('backend/groups')),
@@ -45,6 +49,8 @@ class Groups extends Backend_Controller
 
 	function update($group_id = NULL)
 	{
+		$this->Privileges_Model->has_privilege('backend_group_update');
+
 		$group_id = $this->input->post('group_id') ? $this->input->post('group_id') : $group_id;
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -83,6 +89,8 @@ class Groups extends Backend_Controller
 
 	function delete($group_id = NULL)
 	{
+		$this->Privileges_Model->has_privilege('backend_group_delete');
+
 		if ($group_id)
 		{
 			$this->ion_auth->delete_group($group_id);

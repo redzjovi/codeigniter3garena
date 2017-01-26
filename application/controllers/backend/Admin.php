@@ -45,6 +45,7 @@ class Admin extends Backend_Controller
 	function logout()
 	{
 		$this->ion_auth->logout();
+		$this->session->sess_destroy();
 		redirect('backend/admin');
 	}
 }

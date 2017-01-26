@@ -14,14 +14,14 @@
             <?php
             $navbar = [
                 [
-                    'class' => '', 'icon' => 'glyphicon glyphicon-home', 'text' => lang('menu_dashboard'), 'url' => 'backend/dashboard', 'url_external' => '',
+                    'class' => '', 'icon' => 'glyphicon glyphicon-home', 'privilege_code' => 'backend_dashboard', 'text' => lang('menu_dashboard'), 'url' => 'backend/dashboard', 'url_external' => '',
                 ],
                 [
-                    'class' => '', 'icon' => 'glyphicon glyphicon-cog', 'text' => lang('menu_settings'), 'url' => '#', 'url_external' => '',
+                    'class' => '', 'icon' => 'glyphicon glyphicon-cog', 'privilege_code' => 'backend_settings', 'text' => lang('menu_settings'), 'url' => '#', 'url_external' => '',
                     'child' => [
-                        ['class' => '', 'icon' => 'glyphicon glyphicon-eye-open', 'text' => lang('menu_privileges'), 'url' => 'backend/privileges', 'url_external' => ''],
-                        ['class' => '', 'icon' => 'glyphicon glyphicon-th-large', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
-                        ['class' => '', 'icon' => 'glyphicon glyphicon-user', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-eye-open', 'privilege_code' => 'backend_privileges', 'text' => lang('menu_privileges'), 'url' => 'backend/privileges', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-th-large', 'privilege_code' => 'backend_groups', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
+                        ['class' => '', 'icon' => 'glyphicon glyphicon-user', 'privilege_code' => 'backend_users', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
                     ],
                 ],
             ];
@@ -30,6 +30,9 @@
                 <?php
                 foreach ((array) $navbar as $row)
                 {
+                    if ($this->Privileges_Model->has_privilege($row['privilege_code'], NULL, FALSE) === FALSE)
+                        continue;
+
                     if (empty($row['child']))
                     {
                         echo '<li class="'.$row['class'].'">';
@@ -49,6 +52,9 @@
                         echo    '<ul class="dropdown-menu">';
                         foreach ((array) $row['child'] as $child)
                         {
+                            if ($this->Privileges_Model->has_privilege($child['privilege_code'], NULL, FALSE) === FALSE)
+                                continue;
+
                             echo '<li class="'.$child['class'].'">';
                             echo    '<a href="'.( ($child['url_external']) ? $child['url_external'] : site_url($child['url']) ).'">';
                             echo        '<i class="'.$child['icon'].'"></i> ';

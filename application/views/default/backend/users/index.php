@@ -1,4 +1,6 @@
-<?php echo anchor(site_url('backend/users/create'), lang('create'), array('class' => 'btn btn-primary btn-sm')); ?>
+<?php if ($this->Privileges_Model->has_privilege('backend_user_create', NULL, FALSE) === TRUE)
+	echo anchor(site_url('backend/users/create'), lang('create'), array('class' => 'btn btn-primary btn-sm'));
+?>
 <br /><br />
 
 <table class="table table-bordered table-hover table-striped" id="table" width="100%">
@@ -25,16 +27,26 @@
 				<td><?php echo $user->email; ?></td>
 				<td><?php echo date('Y-m-d H:i:s', $user->last_login); ?></td>
 				<td>
-					<?php foreach ($user->groups as $group) : ?>
-						<?php echo anchor(site_url('backend/groups/update/'.$group->id), $group->name); ?><br />
-					<?php endforeach; ?>
+					<?php if ($this->Privileges_Model->has_privilege('backend_group_update', NULL, FALSE) === TRUE)
+					{
+						foreach ($user->groups as $group) :
+							echo anchor(site_url('backend/groups/update/'.$group->id), $group->name).'<br />';
+						endforeach;
+					}
+					?>
 				</td>
-				<td><?php echo anchor(site_url('backend/user_privileges/update/'.$user->id), lang('manage')); ?></td>
 				<td>
-					<?php echo anchor(site_url('backend/users/update/'.$user->id), lang('update'), array('class' => 'btn btn-success btn-sm')); ?>
-					<?php if ($user->id != 1) : ?>
-						<?php echo anchor(site_url('backend/users/delete/'.$user->id), lang('delete'), array('class' => 'btn btn-danger btn-sm')); ?>
-					<?php endif; ?>
+					<?php if ($this->Privileges_Model->has_privilege('backend_user_privileges_update', NULL, FALSE) === TRUE)
+						echo anchor(site_url('backend/user_privileges/update/'.$user->id), lang('manage'));
+					?>
+				</td>
+				<td>
+					<?php if ($this->Privileges_Model->has_privilege('backend_user_update', NULL, FALSE) === TRUE)
+						echo anchor(site_url('backend/users/update/'.$user->id), lang('update'), array('class' => 'btn btn-success btn-sm')).'&nbsp;';
+
+					if ($this->Privileges_Model->has_privilege('backend_user_delete', NULL, FALSE) === TRUE)
+						echo anchor(site_url('backend/users/delete/'.$user->id), lang('delete'), array('class' => 'btn btn-danger btn-sm'));
+					?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

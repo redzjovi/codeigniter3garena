@@ -1,4 +1,7 @@
-<?php echo anchor(site_url('backend/privileges/create'), lang('create'), array('class' => 'btn btn-primary btn-sm')); ?>
+<?php if ($this->Privileges_Model->has_privilege('backend_privilege_Create', NULL, FALSE) === TRUE)
+	echo anchor(site_url('backend/privileges/create'), lang('create'), array('class' => 'btn btn-primary btn-sm'));
+?>
+
 <br /><br />
 
 <table class="table table-bordered table-hover table-striped" id="table" width="100%">
@@ -19,8 +22,12 @@
 				<td><?php echo $privilege->privilege_name; ?></td>
 				<td><?php echo $privilege->privilege_description; ?></td>
 				<td>
-					<?php echo anchor(site_url('backend/privileges/update/'.$privilege->id), lang('update'), array('class' => 'btn btn-success btn-sm')); ?>
-					<?php echo anchor(site_url('backend/privileges/delete/'.$privilege->id), lang('delete'), array('class' => 'btn btn-danger btn-sm')); ?>
+					<?php if ($this->Privileges_Model->has_privilege('backend_privilege_update', NULL, FALSE) === TRUE)
+						echo anchor(site_url('backend/privileges/update/'.$privilege->id), lang('update'), array('class' => 'btn btn-success btn-sm')).'&nbsp';
+
+					if ($this->Privileges_Model->has_privilege('backend_privilege_delete', NULL, FALSE) === TRUE)
+						echo anchor(site_url('backend/privileges/delete/'.$privilege->id), lang('delete'), array('class' => 'btn btn-danger btn-sm'));
+					?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
