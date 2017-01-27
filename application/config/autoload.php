@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH.'third_party/ion_auth');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('form_validation', 'ion_auth', 'user_agent');
+$autoload['libraries'] = array('form_validation', 'ion_auth', 'j_acl', 'j_auth', 'user_agent');
 
 /*
 | -------------------------------------------------------------------

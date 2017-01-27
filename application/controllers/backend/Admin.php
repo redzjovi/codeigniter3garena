@@ -8,10 +8,9 @@ class Admin extends Backend_Controller
 
 	function index()
 	{
-        if ($this->ion_auth->logged_in())
-        {
-            redirect('backend/dashboard');
-        }
+		$logged_in = $this->j_auth->logged_in(FALSE);
+		if ($logged_in === TRUE)
+         	redirect('backend/dashboard');
 
 		$vars['page_title'] = lang('menu_admin');
 

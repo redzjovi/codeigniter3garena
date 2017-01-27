@@ -9,20 +9,20 @@ class Privileges extends Backend_Controller
 
 	function index()
 	{
-		$this->Privileges_Model->has_privilege('backend_privileges');
+		$this->j_acl->has_privilege('backend_privileges');
 
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_privileges')),
 		);
-		$vars['privileges'] = $this->Privileges_Model->read();
 		$vars['page_title'] = lang('menu_privileges');
+		$vars['privileges'] = $this->Privileges_Model->read();
 		$this->view('privileges/index', $vars);
 	}
 
 	function create()
 	{
-		$this->Privileges_Model->has_privilege('backend_privilege_create');
+		$this->j_acl->has_privilege('backend_privilege_create');
 
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -53,7 +53,7 @@ class Privileges extends Backend_Controller
 
 	function update($id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_privilege_update');
+		$this->j_acl->has_privilege('backend_privilege_update');
 
 		$id = $this->input->post('id') ? $this->input->post('id') : $id;
 		$vars['breadcrumb'] = array(
@@ -95,7 +95,7 @@ class Privileges extends Backend_Controller
 
 	function delete($id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_privilege_delete');
+		$this->j_acl->has_privilege('backend_privilege_delete');
 
 		if ($id)
 		{

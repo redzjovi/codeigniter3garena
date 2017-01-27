@@ -8,7 +8,7 @@ class Groups extends Backend_Controller
 
 	function index()
 	{
-		$this->Privileges_Model->has_privilege('backend_groups');
+		$this->j_acl->has_privilege('backend_groups');
 
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -21,7 +21,7 @@ class Groups extends Backend_Controller
 
 	function create()
 	{
-		$this->Privileges_Model->has_privilege('backend_group_create');
+		$this->j_acl->has_privilege('backend_group_create');
 
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -49,7 +49,7 @@ class Groups extends Backend_Controller
 
 	function update($group_id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_group_update');
+		$this->j_acl->has_privilege('backend_group_update');
 
 		$group_id = $this->input->post('group_id') ? $this->input->post('group_id') : $group_id;
 		$vars['breadcrumb'] = array(
@@ -68,13 +68,13 @@ class Groups extends Backend_Controller
 			if ($group = $this->ion_auth->group((int) $group_id)->row())
 			{
 				$vars['group'] = $group;
+				$this->view('groups/update', $vars);
 			}
 			else
 			{
 				$this->session->set_flashdata('message_danger', lang('data_not_exist'));
 				redirect('backend/groups');
 			}
-			$this->view('groups/update', $vars);
 		}
 		else
 		{
@@ -89,7 +89,7 @@ class Groups extends Backend_Controller
 
 	function delete($group_id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_group_delete');
+		$this->j_acl->has_privilege('backend_group_delete');
 
 		if ($group_id)
 		{

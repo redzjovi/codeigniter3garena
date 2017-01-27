@@ -8,8 +8,10 @@ class Dashboard extends Backend_Controller
 
 	function index()
 	{
-		$this->Privileges_Model->has_privilege('backend_dashboard');
-		
+		$this->j_auth->logged_in();
+
+		$this->j_acl->has_privilege('backend_dashboard');
+
 		$vars['page_title'] = lang('menu_dashboard');
 		$this->view('dashboard/index', $vars);
 	}

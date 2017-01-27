@@ -30,7 +30,7 @@
                 <?php
                 foreach ((array) $navbar as $row)
                 {
-                    if ($this->Privileges_Model->has_privilege($row['privilege_code'], NULL, FALSE) === FALSE)
+                    if ($this->j_acl->has_privilege($row['privilege_code'], NULL, FALSE) === FALSE)
                         continue;
 
                     if (empty($row['child']))
@@ -52,7 +52,7 @@
                         echo    '<ul class="dropdown-menu">';
                         foreach ((array) $row['child'] as $child)
                         {
-                            if ($this->Privileges_Model->has_privilege($child['privilege_code'], NULL, FALSE) === FALSE)
+                            if ($this->j_acl->has_privilege($child['privilege_code'], NULL, FALSE) === FALSE)
                                 continue;
 
                             echo '<li class="'.$child['class'].'">';

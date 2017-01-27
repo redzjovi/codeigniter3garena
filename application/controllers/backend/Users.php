@@ -8,7 +8,7 @@ class Users extends Backend_Controller
 
 	function index($group_id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_users');
+		$this->j_acl->has_privilege('backend_users');
 
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -25,7 +25,7 @@ class Users extends Backend_Controller
 
 	function create()
 	{
-		$this->Privileges_Model->has_privilege('backend_user_create');
+		$this->j_acl->has_privilege('backend_user_create');
 
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
@@ -70,7 +70,7 @@ class Users extends Backend_Controller
 
 	function update($user_id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_user_update');
+		$this->j_acl->has_privilege('backend_user_update');
 
 		$user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
 		$vars['breadcrumb'] = array(
@@ -96,22 +96,22 @@ class Users extends Backend_Controller
 			if ($user = $this->ion_auth->user((int) $user_id)->row())
 			{
 				$vars['user'] = $user;
+				$vars['groups'] = $this->ion_auth->groups()->result();
+				$vars['usergroups'] = array();
+				if ($usergroups = $this->ion_auth->get_users_groups($user->id)->result())
+				{
+					foreach ($usergroups as $group)
+					{
+						$vars['usergroups'][] = $group->id;
+					}
+				}
+				$this->view('users/update', $vars);
 			}
 			else
 			{
 				$this->session->set_flashdata('message_danger', lang('data_not_exist'));
 				redirect('backend/users');
 			}
-			$vars['groups'] = $this->ion_auth->groups()->result();
-			$vars['usergroups'] = array();
-			if ($usergroups = $this->ion_auth->get_users_groups($user->id)->result())
-			{
-				foreach ($usergroups as $group)
-				{
-					$vars['usergroups'][] = $group->id;
-				}
-			}
-			$this->view('users/update', $vars);
 		}
 		else
 		{
@@ -146,7 +146,7 @@ class Users extends Backend_Controller
 
 	function delete($user_id = NULL)
 	{
-		$this->Privileges_Model->has_privilege('backend_user_delete');
+		$this->j_acl->has_privilege('backend_user_delete');
 
 		$this->ion_auth->delete_user($user_id);
 		$this->session->set_flashdata('message_success', $this->ion_auth->messages());

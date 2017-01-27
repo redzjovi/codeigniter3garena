@@ -1,4 +1,4 @@
-<?php if ($this->Privileges_Model->has_privilege('backend_privilege_Create', NULL, FALSE) === TRUE)
+<?php if ($this->j_acl->has_privilege('backend_privilege_Create', NULL, FALSE) === TRUE)
 	echo anchor(site_url('backend/privileges/create'), lang('create'), array('class' => 'btn btn-primary btn-sm'));
 ?>
 
@@ -22,10 +22,10 @@
 				<td><?php echo $privilege->privilege_name; ?></td>
 				<td><?php echo $privilege->privilege_description; ?></td>
 				<td>
-					<?php if ($this->Privileges_Model->has_privilege('backend_privilege_update', NULL, FALSE) === TRUE)
+					<?php if ($this->j_acl->has_privilege('backend_privilege_update', NULL, FALSE) === TRUE)
 						echo anchor(site_url('backend/privileges/update/'.$privilege->id), lang('update'), array('class' => 'btn btn-success btn-sm')).'&nbsp';
 
-					if ($this->Privileges_Model->has_privilege('backend_privilege_delete', NULL, FALSE) === TRUE)
+					if ($this->j_acl->has_privilege('backend_privilege_delete', NULL, FALSE) === TRUE)
 						echo anchor(site_url('backend/privileges/delete/'.$privilege->id), lang('delete'), array('class' => 'btn btn-danger btn-sm'));
 					?>
 				</td>
