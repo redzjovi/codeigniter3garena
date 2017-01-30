@@ -12,7 +12,7 @@ class User_Privileges extends Backend_Controller
 		$this->j_acl->has_privilege('backend_user_privileges_update');
 
 		$id = $this->input->post('id') ? $this->input->post('id') : $id;
-		
+
 		$vars['breadcrumb'] = array(
 			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users'), 'url' => site_url('backend/users')),
@@ -49,6 +49,7 @@ class User_Privileges extends Backend_Controller
 			);
 			$this->User_Privileges_Model->update($id, $data);
 			$this->session->set_flashdata('message_success', lang('data_update_success'));
+			$this->session->unset_userdata('privileges');
 			redirect('backend/users');
 		}
 	}

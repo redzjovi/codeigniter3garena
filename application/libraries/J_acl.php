@@ -22,7 +22,6 @@ class J_acl
 				$user_id = $this->CI->ion_auth->user()->row()->id;
 		}
 
-		$this->CI->session->unset_userdata('privileges');
 		if (empty($this->CI->session->userdata('privileges')))
 		{
 			$group_privileges = $this->CI->Group_Privileges_Model->read_by_user_id($user_id)->result_array();

@@ -12,33 +12,37 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php
-            $navbar = [
-                [
-                    'class' => '', 'icon' => 'glyphicon glyphicon-home', 'privilege_code' => 'backend_dashboard', 'text' => lang('menu_dashboard'), 'url' => 'backend/dashboard', 'url_external' => '',
-                ],
-                [
-                    'class' => '', 'icon' => 'glyphicon glyphicon-cog', 'privilege_code' => 'backend_settings', 'text' => lang('menu_settings'), 'url' => '#', 'url_external' => '',
-                    'child' => [
-                        ['class' => '', 'icon' => 'glyphicon glyphicon-eye-open', 'privilege_code' => 'backend_privileges', 'text' => lang('menu_privileges'), 'url' => 'backend/privileges', 'url_external' => ''],
-                        ['class' => '', 'icon' => 'glyphicon glyphicon-th-large', 'privilege_code' => 'backend_groups', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
-                        ['class' => '', 'icon' => 'glyphicon glyphicon-user', 'privilege_code' => 'backend_users', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
-                    ],
-                ],
-            ];
+            // $navbar = [
+            //     [
+            //         'class' => '', 'icon' => 'glyphicon glyphicon-home', 'privilege_code' => 'backend_dashboard', 'text' => lang('menu_dashboard'), 'url' => 'backend/dashboard', 'url_external' => '',
+            //     ],
+            //     [
+            //         'class' => '', 'icon' => 'glyphicon glyphicon-cog', 'privilege_code' => 'backend_settings', 'text' => lang('menu_settings'), 'url' => '#', 'url_external' => '',
+            //         'child' => [
+            //             ['class' => '', 'icon' => 'glyphicon glyphicon-eye-open', 'privilege_code' => 'backend_privileges', 'text' => lang('menu_privileges'), 'url' => 'backend/privileges', 'url_external' => ''],
+            //             ['class' => '', 'icon' => 'glyphicon glyphicon-th-large', 'privilege_code' => 'backend_groups', 'text' => lang('menu_groups'), 'url' => 'backend/groups', 'url_external' => ''],
+            //             ['class' => '', 'icon' => 'glyphicon glyphicon-user', 'privilege_code' => 'backend_users', 'text' => lang('menu_users'), 'url' => 'backend/users', 'url_external' => ''],
+            //             ['class' => '', 'icon' => 'glyphicon glyphicon-th-list', 'privilege_code' => '', 'text' => lang('menu_menus'), 'url' => 'backend/menus', 'url_external' => ''],
+            //         ],
+            //     ],
+            // ];
             ?>
             <ul class="nav navbar-nav">
                 <?php
-                foreach ((array) $navbar as $row)
+                foreach ((array) $backend_top as $row)
                 {
+                    if ($row['status'] == 0)
+                        continue;
+
                     if ($this->j_acl->has_privilege($row['privilege_code'], NULL, FALSE) === FALSE)
                         continue;
 
                     if (empty($row['child']))
                     {
-                        echo '<li class="'.$row['class'].'">';
+                        echo '<li>';
                         echo    '<a href="'.( ($row['url_external']) ? $row['url_external'] : site_url($row['url']) ).'">';
                         echo        '<i class="'.$row['icon'].'"></i> ';
-                        echo        $row['text'];
+                        echo        (lang($row['text_language']) ? lang($row['text_language']) : $row['text']);
                         echo    '</a>';
                         echo '</li>';
                     }
@@ -47,18 +51,22 @@
                         echo '<li class="dropdown">';
                         echo    '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">';
                         echo        '<i class="'.$row['icon'].'"></i> ';
-                        echo        $row['text'].' <i class="caret"></i>';
+                        echo        (lang($row['text_language']) ? lang($row['text_language']) : $row['text']);
+                        echo        '<i class="caret"></i>';
                         echo    '</a>';
                         echo    '<ul class="dropdown-menu">';
                         foreach ((array) $row['child'] as $child)
                         {
+                            if ($child['status'] == 0)
+                                continue;
+
                             if ($this->j_acl->has_privilege($child['privilege_code'], NULL, FALSE) === FALSE)
                                 continue;
 
-                            echo '<li class="'.$child['class'].'">';
+                            echo '<li>';
                             echo    '<a href="'.( ($child['url_external']) ? $child['url_external'] : site_url($child['url']) ).'">';
                             echo        '<i class="'.$child['icon'].'"></i> ';
-                            echo        $child['text'];
+                            echo        (lang($child['text_language']) ? lang($child['text_language']) : $child['text']);
                             echo    '</a>';
                             echo '</li>';
                         }

@@ -23,6 +23,10 @@ class Migration_Privileges extends CI_Migration
 			array('privilege_code' => 'backend_group_delete', 'privilege_name' => 'Backend Group Delete'),
 			array('privilege_code' => 'backend_group_privileges_update', 'privilege_name' => 'Backend Group Privileges Update'),
 			array('privilege_code' => 'backend_group_update', 'privilege_name' => 'Backend Group Update'),
+			array('privilege_code' => 'backend_menus', 'privilege_name' => 'Backend Menus View'),
+			array('privilege_code' => 'backend_menu_create', 'privilege_name' => 'Backend Menu Create'),
+			array('privilege_code' => 'backend_menu_delete', 'privilege_name' => 'Backend Menu Delete'),
+			array('privilege_code' => 'backend_menu_update', 'privilege_name' => 'Backend Menu Update'),
 			array('privilege_code' => 'backend_privileges', 'privilege_name' => 'Backend Privileges View'),
 			array('privilege_code' => 'backend_privilege_create', 'privilege_name' => 'Backend Privilege Create'),
 			array('privilege_code' => 'backend_privilege_delete', 'privilege_name' => 'Backend Privilege Delete'),
@@ -61,6 +65,10 @@ class Migration_Privileges extends CI_Migration
 			array('group_id' => '1', 'privilege_id' => '14'),
 			array('group_id' => '1', 'privilege_id' => '15'),
 			array('group_id' => '1', 'privilege_id' => '16'),
+			array('group_id' => '1', 'privilege_id' => '17'),
+			array('group_id' => '1', 'privilege_id' => '18'),
+			array('group_id' => '1', 'privilege_id' => '19'),
+			array('group_id' => '1', 'privilege_id' => '20'),
 		);
 		$this->db->insert_batch('group_privileges', $data);
 

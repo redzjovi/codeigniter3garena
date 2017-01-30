@@ -47,6 +47,7 @@ class Group_Privileges extends Backend_Controller
 			);
 			$this->Group_Privileges_Model->update($id, $data);
 			$this->session->set_flashdata('message_success', lang('data_update_success'));
+			$this->session->unset_userdata('privileges');
 			redirect('backend/groups');
 		}
 	}

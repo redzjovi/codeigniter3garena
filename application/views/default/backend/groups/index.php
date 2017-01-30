@@ -27,7 +27,7 @@
 				<td>
 					<?php if ($this->j_acl->has_privilege('backend_group_update', NULL, FALSE) == TRUE)
 						echo anchor(site_url('backend/groups/update/'.$group->id), lang('update'), array('class' => 'btn btn-success btn-sm')).'&nbsp';
-					
+
 					if ($this->j_acl->has_privilege('backend_group_update', NULL, FALSE) == TRUE)
 					{
 						if ( ! in_array($group->name, array('admin','members')))
