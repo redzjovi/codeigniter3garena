@@ -11,7 +11,6 @@ class Groups extends Backend_Controller
 		$this->j_acl->has_privilege('backend_groups');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups')),
 		);
 		$vars['groups'] = $this->ion_auth->groups()->result();
@@ -24,7 +23,6 @@ class Groups extends Backend_Controller
 		$this->j_acl->has_privilege('backend_group_create');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups'), 'url' => site_url('backend/groups')),
 			array('text' => lang('menu_group_create')),
 		);
@@ -53,7 +51,6 @@ class Groups extends Backend_Controller
 
 		$group_id = $this->input->post('group_id') ? $this->input->post('group_id') : $group_id;
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_groups'), 'url' => site_url('backend/groups')),
 			array('text' => lang('menu_group_update')),
 		);

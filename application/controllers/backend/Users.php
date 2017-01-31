@@ -11,7 +11,6 @@ class Users extends Backend_Controller
 		$this->j_acl->has_privilege('backend_users');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users')),
 		);
 		$vars['page_title'] = lang('menu_users');
@@ -28,7 +27,6 @@ class Users extends Backend_Controller
 		$this->j_acl->has_privilege('backend_user_create');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users'), 'url' => site_url('backend/users')),
 			array('text' => lang('menu_user_create')),
 		);
@@ -74,7 +72,6 @@ class Users extends Backend_Controller
 
 		$user_id = $this->input->post('user_id') ? $this->input->post('user_id') : $user_id;
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users'), 'url' => site_url('backend/users')),
 			array('text' => lang('menu_user_update')),
 		);

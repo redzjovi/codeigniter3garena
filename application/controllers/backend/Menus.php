@@ -12,7 +12,6 @@ class Menus extends Backend_Controller
 		$this->j_acl->has_privilege('backend_menus');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_menus')),
 		);
 		$vars['code'] = $this->input->get('code');
@@ -27,7 +26,6 @@ class Menus extends Backend_Controller
 		$this->j_acl->has_privilege('backend_menu_create');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_menus'), 'url' => site_url('backend/menus?code='.$this->input->get('code'))),
 			array('text' => lang('menu_menu_create')),
 		);
@@ -68,7 +66,6 @@ class Menus extends Backend_Controller
 
 		$id = $this->input->post('id') ? $this->input->post('id') : $id;
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_menus'), 'url' => site_url('backend/menus?code='.$this->input->get('code'))),
 			array('text' => lang('menu_menu_update')),
 		);

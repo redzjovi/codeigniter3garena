@@ -12,7 +12,6 @@ class Privileges extends Backend_Controller
 		$this->j_acl->has_privilege('backend_privileges');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_privileges')),
 		);
 		$vars['page_title'] = lang('menu_privileges');
@@ -25,7 +24,6 @@ class Privileges extends Backend_Controller
 		$this->j_acl->has_privilege('backend_privilege_create');
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_privileges'), 'url' => site_url('backend/privileges')),
 			array('text' => lang('menu_privilege_create')),
 		);
@@ -57,7 +55,6 @@ class Privileges extends Backend_Controller
 
 		$id = $this->input->post('id') ? $this->input->post('id') : $id;
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_privileges'), 'url' => site_url('backend/privileges')),
 			array('text' => lang('menu_privilege_update')),
 		);

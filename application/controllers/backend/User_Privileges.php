@@ -14,7 +14,6 @@ class User_Privileges extends Backend_Controller
 		$id = $this->input->post('id') ? $this->input->post('id') : $id;
 
 		$vars['breadcrumb'] = array(
-			array('text' => lang('menu_settings')),
 			array('text' => lang('menu_users'), 'url' => site_url('backend/users')),
 			array('text' => lang('menu_user_privileges_update')),
 		);
