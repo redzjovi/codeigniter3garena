@@ -35,9 +35,13 @@ class Menus_Model extends CI_Model
 	{
 		if ($session === FALSE)
 		{
-			$this->db->where('code', $code);
+			$this->db->select('t.*');
+			$this->db->select('t2.text AS parent_text');
+			$this->db->from($this->table.' AS t');
+			$this->db->join($this->table.' AS t2', 't2.id = t.parent_id', 'left');
+			$this->db->where('t.code', $code);
 			$this->db->order_by('position');
-			$data = $this->db->get($this->table)->result_array();
+			$data = $this->db->get()->result_array();
 		}
 		else if ($session === TRUE)
 		{
@@ -73,118 +77,37 @@ class Menus_Model extends CI_Model
 
 		$menus = $this->read_by_code($code);
 
-		$i = 0;
-		foreach ((array) $menus as $menu)
+		$data_id = array_column($menus, 'id');
+		$data_position = array_column($menus, 'position');
+		// pr($data_id);
+		// pr($data_position);
+
+		$position_from = array_search($id, $data_id);
+		// pr($position_from);
+		// pr($position_to);
+
+		if ($position_from + 1 == $position_to) {}
+		else
 		{
-			if ($menu['position'] > $position_to)
-			{
-				$new_id = $menu['id'];
+			array_splice($data_id, $position_to, 0, array($id));
+			// pr($data_id);
 
-				$data = array('position' => $menu['position']);
-				$this->db->where('id', $id);
+			if ($position_from > $position_to)
+				unset($data_id[$position_from + 1]);
+			else if ($position_from < $position_to)
+				unset($data_id[$position_from]);
+
+			$data_id = array_values($data_id);
+			// pr($data_id);
+
+			foreach ((array) $data_id as $key => $value)
+			{
+				$data = array('position' => $data_position[$key]);
+				$this->db->where('id', $data_id[$key]);
 				$this->db->update($this->table, $data);
-
-				$data = array('position' => $position);
-				$this->db->where('id', $menu['id']);
-				$this->db->update($this->table, $data);
-
-				$i++;
-			}
-			else if ($menu['position'] < $position_to)
-			{
-				$new_id = $menu['id'];
-
-				// $data = array('position' => $menu['position']);
-				// $this->db->where('id', $id);
-				// $this->db->update($this->table, $data);
-				//
-				// $data = array('position' => $position);
-				// $this->db->where('id', $menu['id']);
-				// $this->db->update($this->table, $data);
-
-				// $i++;
-			}
-
-			if ($position == $position_to) // if position_from == position_to
-			{
-				break;
-			}
-			else if ($i === 1)
-			{
-				echo 'id : '.$new_id.'<br />';
-				echo 'position : '.$menu['position'].'<br />';
-				$this->set_position($new_id, $menu['position']);
-				break;
 			}
 		}
-
-		if ($position === 0) // position_to === 0
-		{
-			$data = array('position' => $position_to);
-			$this->db->where('id', $id);
-			$this->db->update($this->table, $data);
-		}
-	}
-
-	function set_position2($id, $position_to = '0')
-	{
-		$menu = $this->read_by_id($id);
-		$code = $menu['code'];
-		$position = $menu['position'];
-
-		$menus = $this->read_by_code($code);
-
-		$i = 0;
-		foreach ((array) $menus as $menu)
-		{
-			if ($menu['position'] > $position_to)
-			{
-				$new_id = $menu['id'];
-
-				$data = array('position' => $menu['position']);
-				$this->db->where('id', $id);
-				$this->db->update($this->table, $data);
-
-				$data = array('position' => $position);
-				$this->db->where('id', $menu['id']);
-				$this->db->update($this->table, $data);
-
-				$i++;
-			}
-			else if ($menu['position'] < $position_to)
-			{
-				$new_id = $menu['id'];
-
-				// $data = array('position' => $menu['position']);
-				// $this->db->where('id', $id);
-				// $this->db->update($this->table, $data);
-				//
-				// $data = array('position' => $position);
-				// $this->db->where('id', $menu['id']);
-				// $this->db->update($this->table, $data);
-
-				// $i++;
-			}
-
-			if ($position == $position_to) // if position_from == position_to
-			{
-				break;
-			}
-			else if ($i === 1)
-			{
-				echo 'id : '.$new_id.'<br />';
-				echo 'position : '.$menu['position'].'<br />';
-				$this->set_position($new_id, $menu['position']);
-				break;
-			}
-		}
-
-		if ($position === 0) // position_to === 0
-		{
-			$data = array('position' => $position_to);
-			$this->db->where('id', $id);
-			$this->db->update($this->table, $data);
-		}
+		// die;
 	}
 
 	function set_status()

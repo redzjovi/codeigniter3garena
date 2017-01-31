@@ -44,7 +44,7 @@
 					<td><?php echo $menu['text']; ?></td>
 					<td><?php echo $menu['url']; ?></td>
 					<td><?php echo $menu['url_external']; ?></td>
-					<td><?php echo $menu['parent_id']; ?></td>
+					<td><?php echo $menu['parent_text']; ?></td>
 					<td><?php echo $menu['position']; ?></td>
 					<td><?php echo $status[$menu['status']]; ?></td>
 					<td>

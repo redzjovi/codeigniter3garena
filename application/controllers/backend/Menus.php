@@ -55,7 +55,7 @@ class Menus extends Backend_Controller
 				'status' => $this->input->post('status')
 			);
 			$id = $this->Menus_Model->create($data);
-			$this->Menus_Model->set_position($id, $id);
+			$this->Menus_Model->update($id, array('position' => $id));
 			$this->Menus_Model->set_position($id, $this->input->post('position'));
 			$this->session->set_flashdata('message_success', lang('data_create_success'));
 			redirect('backend/menus?code='.$this->input->post('code'));
@@ -108,7 +108,7 @@ class Menus extends Backend_Controller
 			$this->Menus_Model->update($id, $data);
 			$this->Menus_Model->set_position($id, $this->input->post('position'));
 			$this->session->set_flashdata('message_success', lang('data_update_success'));
-			// redirect('backend/menus?code='.$this->input->post('code'));
+			redirect('backend/menus?code='.$this->input->post('code'));
 		}
 	}
 

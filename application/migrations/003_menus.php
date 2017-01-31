@@ -28,6 +28,13 @@ class Migration_Menus extends CI_Migration
 			array('code' => 'backend_top', 'privilege_code' => 'backend_groups', 'icon' => 'glyphicon glyphicon-th-large', 'text_language' => 'menu_groups', 'text' => 'Groups', 'url' => 'backend/groups', 'parent_id' => '2', 'position' => '4', 'status' => '1'),
 			array('code' => 'backend_top', 'privilege_code' => 'backend_users', 'icon' => 'glyphicon glyphicon-user', 'text_language' => 'menu_users', 'text' => 'Users', 'url' => 'backend/users', 'parent_id' => '2', 'position' => '5', 'status' => '1'),
 			array('code' => 'backend_top', 'privilege_code' => 'backend_menus', 'icon' => 'glyphicon glyphicon-th-list', 'text_language' => 'menu_menus', 'text' => 'Menus', 'url' => 'backend/menus', 'parent_id' => '2', 'position' => '6', 'status' => '1'),
+
+			// array('code' => 'backend_top', 'privilege_code' => 'backend_dashboard', 'icon' => 'glyphicon glyphicon-home', 'text_language' => 'menu_dashboard', 'text' => 'Dashboard', 'url' => 'backend/dashboard', 'parent_id' => '0', 'position' => '10', 'status' => '1'),
+			// array('code' => 'backend_top', 'privilege_code' => 'backend_settings', 'icon' => 'glyphicon glyphicon-cog', 'text_language' => 'menu_settings', 'text' => 'Settings', 'url' => '', 'parent_id' => '0', 'position' => '20', 'status' => '1'),
+			// array('code' => 'backend_top', 'privilege_code' => 'backend_privileges', 'icon' => 'glyphicon glyphicon-eye-open', 'text_language' => 'menu_privileges', 'text' => 'Privileges', 'url' => 'backend/privileges', 'parent_id' => '2', 'position' => '30', 'status' => '1'),
+			// array('code' => 'backend_top', 'privilege_code' => 'backend_groups', 'icon' => 'glyphicon glyphicon-th-large', 'text_language' => 'menu_groups', 'text' => 'Groups', 'url' => 'backend/groups', 'parent_id' => '2', 'position' => '40', 'status' => '1'),
+			// array('code' => 'backend_top', 'privilege_code' => 'backend_users', 'icon' => 'glyphicon glyphicon-user', 'text_language' => 'menu_users', 'text' => 'Users', 'url' => 'backend/users', 'parent_id' => '2', 'position' => '50', 'status' => '1'),
+			// array('code' => 'backend_top', 'privilege_code' => 'backend_menus', 'icon' => 'glyphicon glyphicon-th-list', 'text_language' => 'menu_menus', 'text' => 'Menus', 'url' => 'backend/menus', 'parent_id' => '2', 'position' => '60', 'status' => '1'),
 		);
 		$this->db->insert_batch('menus', $data);
 	}

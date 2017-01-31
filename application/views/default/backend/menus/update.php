@@ -36,8 +36,6 @@
 </div>
 <div class="form-group">
 	<?php
-	// $data = build_tree($menus);
-	// $data = print_tree($data);
 	$data = array_column($menus, 'text', 'position');
 	foreach ((array) $data as $key => $value) :
 		if ($key == $menu['position'])
@@ -47,22 +45,22 @@
 	endforeach;
 	$data = array('0' => lang('first')) + $data;
 	$position = array_search($menu['position'], array_keys($data));
+	$data = array_values($data);
 	?>
 
 	<?php echo form_label(lang('position').' (*)'); ?>
 	<select class="form-control" name="position">
-		<?php $i = 0;
+		<?php
 		foreach ((array) $data as $key => $value) :
-			echo '<option '.set_select('position', $value, ($key == $menu['position'] ? TRUE : FALSE));
+			echo '<option '.set_select('position', $key, ($key == $position ? TRUE : FALSE));
 
-			if ($i + 1 == $position)
+			if ($key + 1 == $position)
 				echo 'disabled';
 
 			echo ' value="'.$key.'">';
 
-			echo $data[$key];
+			echo $value;
 			echo '</option>';
-			$i++;
 		endforeach;
 		?>
 	</select>

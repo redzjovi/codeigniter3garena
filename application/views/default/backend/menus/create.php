@@ -40,14 +40,16 @@
 	<?php echo form_error('status', '<p class="text-danger">', '</p>'); ?>
 </div>
 <div class="form-group">
-	<?php $data = array_column($menus, 'text', 'position');
+	<?php
+	$data = array_column($menus, 'text', 'position');
 	foreach ((array) $data as $key => $value) :
 		$data[$key] = sprintf(lang('after_with_param'), $value);
 	endforeach;
 	$data = array('0' => lang('first')) + $data;
+	$data = array_values($data);
 	?>
 	<?php echo form_label(lang('position').' (*)'); ?>
-	<?php echo form_dropdown('position', $data, set_value('position', ''), array('class' => 'form-control')); ?>
+	<?php echo form_dropdown('position', $data, set_value('position'), array('class' => 'form-control')); ?>
 </div>
 
 <?php echo form_submit('submit', lang('create'), array('class' => 'btn btn-primary btn-sm')); ?>
