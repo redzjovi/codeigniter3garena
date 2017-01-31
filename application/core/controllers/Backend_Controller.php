@@ -4,7 +4,7 @@ class Backend_Controller extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Menus_Model');
+		$this->load->model(['Menus_Model', 'Settings_Model']);
 
 		// $this->set_backend(TRUE);
         //
@@ -20,7 +20,7 @@ class Backend_Controller extends MY_Controller
 		// $vars['left_menu'] = $this->Post_Categories_Model->read();
 		// $vars['user_group'] = $this->ion_auth->get_users_groups()->result();
 
-		$template = 'default';
+		$template = $this->Settings_Model->get_template();
 
 		$vars['top'] = $template.'/backend/_partials/top';
 		$vars['left'] = $template.'/backend/_partials/left';

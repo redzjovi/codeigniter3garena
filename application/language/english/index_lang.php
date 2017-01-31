@@ -55,6 +55,7 @@ $lang['last'] = 'Last';
 $lang['last_login'] = 'Last login';
 $lang['last_name'] = 'Last name';
 $lang['manage'] = 'Manage';
+$lang['menu'] = 'Menu';
 $lang['name'] = 'Name';
 $lang['no'] = 'No';
 $lang['parent'] = 'Parent';
