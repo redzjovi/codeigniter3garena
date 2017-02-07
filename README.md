@@ -11,3 +11,7 @@ Demo : <a href="https://codeigniter3app-redzjovi.c9users.io/backend/admin">https
 "php index.php migrate version 1"<br />
 "php index.php migrate version 2"<br />
 "php index.php migrate version 3"
+
+## Included libraries
+<a href="https://github.com/benedmunds/CodeIgniter-Ion-Auth">CodeIgniter-Ion-Auth</a>
+<a href="https://github.com/chriskacerguis/codeigniter-restserver">codeigniter-restserver</a>

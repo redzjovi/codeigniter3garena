@@ -4,6 +4,7 @@ class Groups extends Backend_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Groups_Model');
 	}
 
 	function index()
@@ -28,8 +29,8 @@ class Groups extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_group_create');
 
-		$this->form_validation->set_rules('group_name', lang('group_name'), 'trim|required|is_unique[groups.name]');
-		$this->form_validation->set_rules('group_description', lang('group_description'), 'trim|required');
+		$rules = $this->Groups_Model->rules['create'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -56,9 +57,8 @@ class Groups extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_group_update');
 
-		$this->form_validation->set_rules('group_name', lang('group_name'), 'trim|required|callback_check_unique_group_name');
-		$this->form_validation->set_rules('group_description', lang('group_description'), 'trim|required');
-		$this->form_validation->set_rules('group_id', lang('group_id'), 'trim|integer|required');
+		$rules = $this->Groups_Model->rules['update'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -98,24 +98,7 @@ class Groups extends Backend_Controller
 
 	function check_unique_group_name()
 	{
-		$group_id = $this->input->post('group_id');
-		$group_name = $this->input->post('group_name');
-		$this->load->model('Groups_Model');
-		$result = $this->Groups_Model->check_unique_group_name($group_id, $group_name);
-
-		if ($result == 0)
-		{
-			$response = true;
-		}
-		else
-		{
-			$this->form_validation->set_message(
-				'check_unique_group_name',
-				sprintf(lang('unique_with_param'), lang('group_name'))
-			);
-			$response = false;
-		}
-		return $response;
+		return $this->Groups_Model->check_unique_group_name();
 	}
 }
 ?>
