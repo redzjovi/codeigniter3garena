@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <?php if (isset($message)) : ?>
+            <?php if ( ! empty ($message)) : ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <?php echo $message; ?>
