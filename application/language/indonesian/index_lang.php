@@ -54,6 +54,7 @@ $lang['inactive'] = 'Tidak aktif';
 $lang['last'] = 'Terakhir';
 $lang['last_login'] = 'Login terakhir';
 $lang['last_name'] = 'Nama belakang';
+$lang['login'] = 'Masuk';
 $lang['manage'] = 'Kelola';
 $lang['menu'] = 'Menu';
 $lang['name'] = 'Nama';

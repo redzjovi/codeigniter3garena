@@ -4,6 +4,7 @@ class Admin extends Backend_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Users_Model');
 	}
 
 	function index()
@@ -14,31 +15,18 @@ class Admin extends Backend_Controller
 
 		$vars['page_title'] = lang('menu_admin');
 
-		if ($this->input->post())
+		$rules = $this->Users_Model->rules['login'];
+        $this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() === TRUE)
 		{
-			$this->form_validation->set_rules('email', lang('email'), 'required|valid_email');
-			$this->form_validation->set_rules('password', lang('password'), 'required');
-			$this->form_validation->set_rules('remember_me', lang('remember_me'), 'integer');
-
-			if ($this->form_validation->run() === TRUE)
-			{
-				$remember = (bool) $this->input->post('remember_me');
-				if ($this->ion_auth->login($this->input->post('email'), $this->input->post('password'), $remember))
-				{
-					redirect('backend/dashboard');
-				}
-				else
-				{
-					$vars['message'] = $this->ion_auth->errors();
-				}
-			}
-			else
-			{
-				$vars['message'] = validation_errors();
-			}
+			redirect('backend/dashboard');
 		}
-
-		$this->view('admin/index', $vars, null, 'login');
+		else
+		{
+			$vars['message'] = validation_errors();
+			$this->view('admin/index', $vars, null, 'login');
+		}
 	}
 
 	function logout()
@@ -46,6 +34,11 @@ class Admin extends Backend_Controller
 		$this->ion_auth->logout();
 		$this->session->sess_destroy();
 		redirect('backend/admin');
+	}
+
+	function check_login()
+	{
+		return $this->Users_Model->check_login();
 	}
 }
 ?>
