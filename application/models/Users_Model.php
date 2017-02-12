@@ -1,6 +1,8 @@
 <?php
 class Users_Model extends CI_Model
 {
+    private $table = 'users';
+
     public $rules = array(
         'login' => array(
             array('field' => 'email', 'label' => 'lang:email', 'rules' => 'required|valid_email'),
@@ -32,8 +34,6 @@ class Users_Model extends CI_Model
             array('field' => 'user_id', 'label' => 'lang:user_id', 'rules' => 'trim|integer|required'),
         ),
 	);
-
-    private $table = 'users';
 
     function check_login()
 	{
