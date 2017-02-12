@@ -6,8 +6,9 @@ Demo : <a href="https://codeigniter3app-redzjovi.c9users.io/backend/admin">https
 
 ## Installation
 
-1. Update application/config/config.php
-2. In terminal, to generate table<br />
+1. In application/config/, rename config.example.php to config.php, and set base_url
+1. In application/config/, rename database.example.php to database.php, and set username, password, database
+3. In terminal, run migration to generate table<br />
 "php index.php migrate version 1"<br />
 "php index.php migrate version 2"<br />
 "php index.php migrate version 3"

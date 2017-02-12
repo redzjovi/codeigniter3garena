@@ -3,6 +3,18 @@ class Menus_Model extends CI_Model
 {
 	private $table = 'menus';
 
+	public $rules = array(
+		'create' => array(
+			array('field' => 'code', 'label' => 'lang:code', 'rules' => 'trim|required'),
+			array('field' => 'status', 'label' => 'lang:status', 'rules' => 'trim|required|numeric'),
+		),
+		'update' => array(
+			array('field' => 'code', 'label' => 'lang:code', 'rules' => 'trim|required'),
+			array('field' => 'status', 'label' => 'lang:status', 'rules' => 'trim|required|numeric'),
+			array('field' => 'id', 'label' => 'lang:id', 'rules' => 'trim|integer|required'),
+		),
+	);
+
 	public $status = array();
 
 	function __construct()
@@ -66,7 +78,7 @@ class Menus_Model extends CI_Model
 
 	function delete($id)
 	{
-		$this->db->delete('menus', array('id' => $id));
+		$this->db->delete($this->table, array('id' => $id));
 	}
 
 	function set_position($id, $position_to = '0')

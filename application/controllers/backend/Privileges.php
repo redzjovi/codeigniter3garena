@@ -29,8 +29,8 @@ class Privileges extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_privilege_create');
 
-		$this->form_validation->set_rules('privilege_code', lang('privilege_code'), 'trim|required|is_unique[privileges.privilege_code]');
-		$this->form_validation->set_rules('privilege_name', lang('privilege_name'), 'trim|required');
+		$rules = $this->Privileges_Model->rules['create'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -60,9 +60,8 @@ class Privileges extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_privilege_update');
 
-		$this->form_validation->set_rules('privilege_code', lang('privilege_code'), 'trim|required|callback_check_unique_privilege_code');
-		$this->form_validation->set_rules('privilege_name', lang('privilege_name'), 'trim|required');
-		$this->form_validation->set_rules('id', lang('id'), 'trim|integer|required');
+		$rules = $this->Privileges_Model->rules['update'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -104,23 +103,7 @@ class Privileges extends Backend_Controller
 
 	function check_unique_privilege_code()
 	{
-		$id = $this->input->post('id');
-		$privilege_code = $this->input->post('privilege_code');
-		$result = $this->Privileges_Model->check_unique_privilege_code($id, $privilege_code);
-
-		if ($result == 0)
-		{
-			$response = true;
-		}
-		else
-		{
-			$this->form_validation->set_message(
-				'check_unique_privilege_code',
-				sprintf(lang('unique_with_param'), lang('privilege_code'))
-			);
-			$response = false;
-		}
-		return $response;
+		return $this->Privileges_Model->check_unique_privilege_code();
 	}
 }
 ?>

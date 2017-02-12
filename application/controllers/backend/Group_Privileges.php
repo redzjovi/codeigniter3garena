@@ -19,7 +19,8 @@ class Group_Privileges extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_group_privileges_update');
 
-		$this->form_validation->set_rules('id', lang('id'), 'trim|integer|required');
+		$rules = $this->Groups_Model->rules['create'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{

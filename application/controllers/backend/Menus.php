@@ -17,7 +17,7 @@ class Menus extends Backend_Controller
 		$vars['code'] = $this->input->get('code');
 		$vars['menus'] = $this->Menus_Model->read_by_code($this->input->get('code'));
 		$vars['page_title'] = lang('menu_menus');
-		$vars['status'] = $this->Menus_Model->set_status()->status;
+		$vars['status'] = $this->Menus_Model->status;
 		$this->view('menus/index', $vars);
 	}
 
@@ -34,8 +34,8 @@ class Menus extends Backend_Controller
 		$vars['page_title'] = lang('menu_menu_create');
 		$vars['status'] = $this->Menus_Model->set_status()->status;
 
-		$this->form_validation->set_rules('code', lang('code'), 'trim|required');
-		$this->form_validation->set_rules('status', lang('status'), 'trim|required|numeric');
+		$rules = $this->Menus_Model->rules['create'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -74,9 +74,8 @@ class Menus extends Backend_Controller
 		$vars['page_title'] = lang('menu_menu_update');
 		$vars['status'] = $this->Menus_Model->set_status()->status;
 
-		$this->form_validation->set_rules('code', lang('code'), 'trim|required');
-		$this->form_validation->set_rules('status', lang('status'), 'trim|required|numeric');
-		$this->form_validation->set_rules('id', lang('id'), 'trim|integer|required');
+		$rules = $this->Menus_Model->rules['update'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{

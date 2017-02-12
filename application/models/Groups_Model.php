@@ -1,6 +1,8 @@
 <?php
 class Groups_Model extends CI_Model
 {
+	private $table = 'groups';
+
 	public $rules = array(
 		'create' => array(
 			array('field' => 'group_name', 'label' => 'lang:group_name', 'rules' => 'trim|required|is_unique[groups.name]'),
@@ -16,7 +18,7 @@ class Groups_Model extends CI_Model
 	function read_by_id($id)
     {
         $this->db->where('id', $id);
-        return $this->db->get('groups')->row();
+        return $this->db->get($this->table)->row();
     }
 
 	function check_unique_group_name()
@@ -44,7 +46,7 @@ class Groups_Model extends CI_Model
 	{
 		$this->db->where('name', $group_name);
 		$this->db->where_not_in('id', $group_id);
-		return $this->db->count_all_results('groups');
+		return $this->db->count_all_results($this->table);
 	}
 }
 ?>

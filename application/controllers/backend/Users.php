@@ -4,6 +4,7 @@ class Users extends Backend_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Users_Model');
 	}
 
 	function index($group_id = NULL)
@@ -32,15 +33,8 @@ class Users extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_user_create');
 
-		$this->form_validation->set_rules('first_name', lang('first_name'), 'trim');
-		$this->form_validation->set_rules('last_name', lang('last_name'), 'trim');
-		$this->form_validation->set_rules('company', lang('company'), 'trim');
-		$this->form_validation->set_rules('phone', lang('phone'), 'trim');
-		$this->form_validation->set_rules('username', lang('username'), 'trim|required|is_unique[users.username]');
-		$this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email|is_unique[users.email]');
-		$this->form_validation->set_rules('password', lang('password'), 'required');
-		$this->form_validation->set_rules('password_confirm', lang('password_confirm'), 'required|matches[password]');
-		$this->form_validation->set_rules('groups[]', lang('groups'), 'required|integer');
+		$rules = $this->Users_Model->rules['create'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
@@ -77,16 +71,8 @@ class Users extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_user_update');
 
-		$this->form_validation->set_rules('first_name', lang('first_name'), 'trim');
-		$this->form_validation->set_rules('last_name', lang('last_name'), 'trim');
-		$this->form_validation->set_rules('company', lang('company'), 'trim');
-		$this->form_validation->set_rules('phone', lang('phone'), 'trim');
-		$this->form_validation->set_rules('username', lang('username'), 'trim|required');
-		$this->form_validation->set_rules('email', lang('email'), 'trim|required|valid_email');
-		$this->form_validation->set_rules('password', lang('password'), 'min_length[6]');
-		$this->form_validation->set_rules('password_confirm', lang('password_confirm'), 'matches[password]');
-		$this->form_validation->set_rules('groups[]', lang('groups'), 'required|integer');
-		$this->form_validation->set_rules('user_id', lang('user_id'), 'trim|integer|required');
+		$rules = $this->Users_Model->rules['update'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{

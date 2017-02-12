@@ -19,7 +19,8 @@ class User_Privileges extends Backend_Controller
 		);
 		$vars['page_title'] = lang('menu_user_privileges_update');
 
-		$this->form_validation->set_rules('id', lang('id'), 'trim|integer|required');
+		$rules = $this->User_Privileges_Model->rules['update'];
+        $this->form_validation->set_rules($rules);
 
 		if ($this->form_validation->run() === FALSE)
 		{
