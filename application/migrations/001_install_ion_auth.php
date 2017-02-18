@@ -10,9 +10,7 @@ class Migration_Install_ion_auth extends CI_Migration {
 		// Table structure for table 'groups'
 		$this->dbforge->add_field(array(
 			'id' => array(
-				'type' => 'MEDIUMINT',
-				'constraint' => '8',
-				'unsigned' => TRUE,
+				'type' => 'INT',
 				'auto_increment' => TRUE
 			),
 			'name' => array(
@@ -29,16 +27,9 @@ class Migration_Install_ion_auth extends CI_Migration {
 
 		// Dumping data for table 'groups'
 		$data = array(
-			array(
-				'id' => '1',
-				'name' => 'admin',
-				'description' => 'Administrator'
-			),
-			array(
-				'id' => '2',
-				'name' => 'members',
-				'description' => 'General User'
-			)
+			array('name' => 'superadmin', 'description' => 'Super Admin'),
+			array('name' => 'admin', 'description' => 'Admin'),
+			array('name' => 'members', 'description' => 'General User'),
 		);
 		$this->db->insert_batch('groups', $data);
 
@@ -49,9 +40,7 @@ class Migration_Install_ion_auth extends CI_Migration {
 		// Table structure for table 'users'
 		$this->dbforge->add_field(array(
 			'id' => array(
-				'type' => 'MEDIUMINT',
-				'constraint' => '8',
-				'unsigned' => TRUE,
+				'type' => 'INT',
 				'auto_increment' => TRUE
 			),
 			'ip_address' => array(
@@ -141,21 +130,39 @@ class Migration_Install_ion_auth extends CI_Migration {
 		$data = array(
 			'id' => '1',
 			'ip_address' => '127.0.0.1',
-			'username' => 'administrator',
+			'username' => 'superadmin',
 			'password' => '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36',
 			'salt' => '',
-			'email' => 'admin@admin.com',
+			'email' => 'superadmin@superadmin.com',
 			'activation_code' => '',
 			'forgotten_password_code' => NULL,
 			'created_on' => '1268889823',
 			'last_login' => '1268889823',
 			'active' => '1',
-			'first_name' => 'Admin',
-			'last_name' => 'istrator',
-			'company' => 'ADMIN',
+			'first_name' => 'Super',
+			'last_name' => 'admin',
+			'company' => '',
 			'phone' => '0',
 		);
 		$this->db->insert('users', $data);
+
+		$data = array(
+			array(
+				'username' => 'admin',
+				'password' => '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36',
+				'email' => 'admin@admin.com',
+				'active' => '1',
+				'first_name' => 'Admin',
+			),
+			array(
+				'username' => 'member',
+				'password' => '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36',
+				'email' => 'member@member.com',
+				'active' => '1',
+				'first_name' => 'Member',
+			),
+		);
+		$this->db->insert_batch('users', $data);
 
 
 		// Drop table 'users_groups' if it exists
@@ -164,20 +171,14 @@ class Migration_Install_ion_auth extends CI_Migration {
 		// Table structure for table 'users_groups'
 		$this->dbforge->add_field(array(
 			'id' => array(
-				'type' => 'MEDIUMINT',
-				'constraint' => '8',
-				'unsigned' => TRUE,
+				'type' => 'INT',
 				'auto_increment' => TRUE
 			),
 			'user_id' => array(
-				'type' => 'MEDIUMINT',
-				'constraint' => '8',
-				'unsigned' => TRUE
+				'type' => 'INT',
 			),
 			'group_id' => array(
-				'type' => 'MEDIUMINT',
-				'constraint' => '8',
-				'unsigned' => TRUE
+				'type' => 'INT',
 			)
 		));
 		$this->dbforge->add_key('id', TRUE);
@@ -185,16 +186,9 @@ class Migration_Install_ion_auth extends CI_Migration {
 
 		// Dumping data for table 'users_groups'
 		$data = array(
-			array(
-				'id' => '1',
-				'user_id' => '1',
-				'group_id' => '1',
-			),
-			array(
-				'id' => '2',
-				'user_id' => '1',
-				'group_id' => '2',
-			)
+			array('user_id' => '1', 'group_id' => '1'),
+			array('user_id' => '2', 'group_id' => '2'),
+			array('user_id' => '3', 'group_id' => '3'),
 		);
 		$this->db->insert_batch('users_groups', $data);
 
@@ -205,9 +199,7 @@ class Migration_Install_ion_auth extends CI_Migration {
 		// Table structure for table 'login_attempts'
 		$this->dbforge->add_field(array(
 			'id' => array(
-				'type' => 'MEDIUMINT',
-				'constraint' => '8',
-				'unsigned' => TRUE,
+				'type' => 'INT',
 				'auto_increment' => TRUE
 			),
 			'ip_address' => array(

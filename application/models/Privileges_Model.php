@@ -58,10 +58,9 @@ class Privileges_Model extends CI_Model
 
 	function check_unique_privilege_code()
 	{
-
 		$id = $this->input->post('id');
 		$privilege_code = $this->input->post('privilege_code');
-		$result = $this->Privileges_Model->count_unique_privilege_code($id, $privilege_code);
+		$result = $this->count_unique_privilege_code($id, $privilege_code);
 
 		if ($result == 0)
 		{

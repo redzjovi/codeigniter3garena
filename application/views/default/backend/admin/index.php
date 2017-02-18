@@ -12,7 +12,7 @@
                 <h1 class="text-center login-title"><?php echo lang('sign_in'); ?></h1>
                 <?php echo form_open('', ['class' => 'form-signin']); ?>
 
-                <?php echo form_input('email', set_value('email', 'admin@admin.com'), ['autofocus' => '', 'class' => 'form-control', 'placeholder' => lang('email')]); ?>
+                <?php echo form_input('email', set_value('email', 'superadmin@superadmin.com'), ['autofocus' => '', 'class' => 'form-control', 'placeholder' => lang('email')]); ?>
                 <?php echo form_error('email', '<p class="text-danger">', '</p>'); ?>
 
                 <?php echo form_password('password', set_value('password', 'password'), ['class' => 'form-control', 'placeholder' => lang('password')]); ?>

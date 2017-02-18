@@ -26,8 +26,8 @@ class Users_Model extends CI_Model
             array('field' => 'last_name', 'label' => 'lang:last_name', 'rules' => 'trim'),
             array('field' => 'company', 'label' => 'lang:company', 'rules' => 'trim'),
             array('field' => 'phone', 'label' => 'lang:phone', 'rules' => 'trim'),
-            array('field' => 'username', 'label' => 'lang:username', 'rules' => 'trim|required'),
-            array('field' => 'email', 'label' => 'lang:email', 'rules' => 'trim|required|valid_email'),
+            array('field' => 'username', 'label' => 'lang:username', 'rules' => 'trim|required|callback_check_unique_username'),
+            array('field' => 'email', 'label' => 'lang:email', 'rules' => 'trim|required|valid_email|callback_check_unique_email'),
             array('field' => 'password', 'label' => 'lang:password', 'rules' => 'min_length[6]'),
             array('field' => 'password_confirm', 'label' => 'lang:password_confirm', 'rules' => 'matches[password]'),
             array('field' => 'groups[]', 'label' => 'lang:groups', 'rules' => 'required|integer'),
@@ -75,5 +75,61 @@ class Users_Model extends CI_Model
 
         return $key;
     }
+
+    function check_unique_email()
+	{
+		$id = $this->input->post('user_id');
+		$email = $this->input->post('email');
+		$result = $this->count_unique_email($id, $email);
+
+		if ($result == 0)
+		{
+			$response = true;
+		}
+		else
+		{
+			$this->form_validation->set_message(
+				'check_unique_email',
+				sprintf(lang('unique_with_param'), lang('email'))
+			);
+			$response = false;
+		}
+		return $response;
+	}
+
+    function check_unique_username()
+	{
+		$id = $this->input->post('user_id');
+		$username = $this->input->post('username');
+		$result = $this->count_unique_username($id, $username);
+
+		if ($result == 0)
+		{
+			$response = true;
+		}
+		else
+		{
+			$this->form_validation->set_message(
+				'check_unique_username',
+				sprintf(lang('unique_with_param'), lang('username'))
+			);
+			$response = false;
+		}
+		return $response;
+	}
+
+	function count_unique_email($id, $email)
+	{
+		$this->db->where('email', $email);
+		$this->db->where_not_in('id', $id);
+		return $this->db->count_all_results($this->table);
+	}
+
+    function count_unique_username($id, $username)
+	{
+		$this->db->where('username', $username);
+		$this->db->where_not_in('id', $id);
+		return $this->db->count_all_results($this->table);
+	}
 }
 ?>

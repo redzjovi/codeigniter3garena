@@ -135,5 +135,15 @@ class Users extends Backend_Controller
 		$this->session->set_flashdata('message_success', $this->ion_auth->messages());
 		redirect('backend/users');
 	}
+
+	function check_unique_email()
+	{
+		return $this->Users_Model->check_unique_email();
+	}
+
+	function check_unique_username()
+	{
+		return $this->Users_Model->check_unique_username();
+	}
 }
 ?>
