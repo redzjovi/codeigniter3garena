@@ -1,5 +1,5 @@
 <?php
-class Group_Privileges extends Backend_Controller
+class Group_privileges extends Backend_Controller
 {
 	function __construct()
 	{

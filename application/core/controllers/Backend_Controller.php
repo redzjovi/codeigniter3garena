@@ -5,20 +5,12 @@ class Backend_Controller extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model(['Menus_Model', 'Settings_Model']);
-
-		// $this->set_backend(TRUE);
-        //
-		// // only login users can access Admin Panel
-		// $this->verify_login();
 	}
 
 	public function view($view, $vars = array(), $return = FALSE, $layout = 'default')
 	{
 		$vars['backend_top'] = build_tree( $this->Menus_Model->read_by_code('backend_top', FALSE) );
 		$vars['ion_auth_user'] = $this->ion_auth->user()->row();
-		// pr($vars['backend_top']);
-		// $vars['left_menu'] = $this->Post_Categories_Model->read();
-		// $vars['user_group'] = $this->ion_auth->get_users_groups()->result();
 
 		$template = $this->Settings_Model->get_template();
 

@@ -30,7 +30,7 @@
 
 					if ($this->j_acl->has_privilege('backend_group_update', NULL, FALSE) == TRUE)
 					{
-						if ( ! in_array($group->name, array('admin','members')))
+						if ( ! in_array($group->name, array('superadmin', 'admin')))
 							echo anchor(site_url('backend/groups/delete/'.$group->id), lang('delete'), array('class' => 'btn btn-danger btn-sm'));
 					}
 					?>
