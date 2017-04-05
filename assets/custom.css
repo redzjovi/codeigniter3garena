@@ -1,0 +1,12 @@
+.container {
+    border: 1px solid black;
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+}
+.content {
+    border: 1px solid black;
+    min-height: 400px;
+}

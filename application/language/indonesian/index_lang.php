@@ -17,6 +17,7 @@ $lang['menu_settings'] = 'Pengaturan';
 			$lang['menu_menu_create'] = 'Tambah menu';
 			$lang['menu_menu_update'] = 'Ubah update';
 
+$lang['account_registration'] = 'Registrasi Akun'; // *
 $lang['action'] = 'Aksi';
 $lang['active'] = 'Aktif';
 $lang['admin'] = 'Admin2';
