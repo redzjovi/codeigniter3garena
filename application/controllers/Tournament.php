@@ -111,6 +111,7 @@ class Tournament extends Frontend_Controller
         {
             $vars['page_title'] = lang('registration_form');
             $vars['user'] = $this->ion_auth->user()->row();
+            $vars['user_detail'] = $this->User_Detail_Model->read_by_user_id($this->ion_auth->user()->row()->id);
             $this->view('tournament/registration', $vars);
         }
     }

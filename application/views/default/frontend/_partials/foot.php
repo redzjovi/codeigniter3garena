@@ -11,5 +11,6 @@
     <script src="<?php echo base_url(); ?>assets/datatables.net-colreorder/js/dataTables.colReorder.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/datatables.net-responsive-bs/js/responsive.bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/jquery-form-validator/form-validator/jquery.form-validator.min.js"></script>
 </body>
 </html>

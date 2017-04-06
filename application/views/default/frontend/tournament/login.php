@@ -10,7 +10,12 @@
                     <?php echo form_label(lang('username').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_input('username', set_value('username'), ['autofocus' => '', 'class' => 'form-control', 'placeholder' => lang('username')]); ?>
+                    <?php echo form_input('username', set_value('username'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, length',
+                        'data-validation-length' => '6-15',
+                        'placeholder' => lang('username'),
+                    ]); ?>
                     <?php echo form_error('username', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -21,7 +26,12 @@
                     <?php echo form_label(lang('password').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_password('password', set_value('password'), ['class' => 'form-control', 'placeholder' => lang('password')]); ?>
+                    <?php echo form_password('password', set_value('password'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, length',
+                        'data-validation-length' => '8-16',
+                        'placeholder' => lang('password'),
+                    ]); ?>
                     <?php echo form_error('password', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -42,3 +52,9 @@
 
     <?php echo form_close(); ?>
 </div>
+
+<script>
+$(document).ready(function() {
+    $.validate();
+});
+</script>

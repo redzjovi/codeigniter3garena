@@ -10,7 +10,12 @@
                     <?php echo form_label(lang('username').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_input('username', set_value('username'), ['autofocus' => '', 'class' => 'form-control', 'placeholder' => lang('username')]); ?>
+                    <?php echo form_input('username', set_value('username'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, alphanumeric, length',
+                        'data-validation-length' => '6-15',
+                        'placeholder' => lang('username'),
+                    ]); ?>
                     <?php echo form_error('username', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -21,7 +26,12 @@
                     <?php echo form_label(lang('password').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_password('password', set_value('password'), ['class' => 'form-control', 'placeholder' => lang('password')]); ?>
+                    <?php echo form_password('password', set_value('password'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, length',
+                        'data-validation-length' => '8-16',
+                        'placeholder' => lang('password'),
+                    ]); ?>
                     <?php echo form_error('password', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -32,7 +42,12 @@
                     <?php echo form_label(lang('password_confirm').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_password('password_confirm', set_value('password_confirm'), ['class' => 'form-control', 'placeholder' => lang('password_confirm')]); ?>
+                    <?php echo form_password('password_confirm', set_value('password_confirm'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, length',
+                        'data-validation-length' => '8-16',
+                        'placeholder' => lang('password_confirm'),
+                    ]); ?>
                     <?php echo form_error('password_confirm', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -43,7 +58,12 @@
                     <?php echo form_label(lang('full_name').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_input('full_name', set_value('full_name'), ['autofocus' => '', 'class' => 'form-control', 'placeholder' => lang('full_name')]); ?>
+                    <?php echo form_input('full_name', set_value('full_name'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, alpha_space',
+                        'data-validation-ignore' => '',
+                        'placeholder' => lang('full_name'),
+                    ]); ?>
                     <?php echo form_error('full_name', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -54,7 +74,11 @@
                     <?php echo form_label(lang('email').' *'); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_input('email', set_value('email'), ['class' => 'form-control', 'placeholder' => lang('email')]); ?>
+                    <?php echo form_input('email', set_value('email'), [
+                        'class' => 'form-control',
+                        'data-validation' => 'required, email',
+                        'placeholder' => lang('email'),
+                    ]); ?>
                     <?php echo form_error('email', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -65,7 +89,10 @@
                     <?php echo form_label(lang('phone_number')); ?>
                 </div>
                 <div class="col-md-6">
-                    <?php echo form_input('phone_number', set_value('phone_number'), ['class' => 'form-control', 'placeholder' => lang('phone_number')]); ?>
+                    <?php echo form_input('phone_number', set_value('phone_number'), [
+                        'class' => 'form-control',
+                        'placeholder' => lang('phone_number')
+                    ]); ?>
                     <?php echo form_error('phone_number', '<p class="text-danger">', '</p>'); ?>
                 </div>
                 <div class="col-md-3"></div>
@@ -105,7 +132,9 @@
             <div class="form-group">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <?php echo form_checkbox('agreement', '1', set_value('agreement')); ?>
+                    <?php echo form_checkbox('agreement', '1', set_value('agreement'), [
+                        'data-validation' => 'required',
+                    ]); ?>
                     Saya telah membaca dan menerima
                     <?php echo anchor('#', lang('terms_and_regulations'), ['data-target' => '#myModal', 'data-toggle' => 'modal', 'role' => 'button']); ?>
                     dari Garena.
@@ -145,3 +174,17 @@
 
     <?php echo form_close(); ?>
 </div>
+
+<script>
+$(document).ready(function() {
+    $.formUtils.addValidator({
+        name : 'alpha_space',
+            validatorFunction : function(value, $el, config, language, $form) {
+            return /^([-a-z ])+$/i.test(value);
+        },
+        errorMessage : 'The input value may only contain alpha characters, and spaces.',
+    });
+
+    $.validate();
+});
+</script>

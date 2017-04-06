@@ -31,6 +31,7 @@ class Users_Model extends CI_Model
             array('field' => 'password', 'label' => 'lang:password', 'rules' => 'required|min_length[8]|max_length[16]'),
             array('field' => 'password_confirm', 'label' => 'lang:password_confirm', 'rules' => 'required|matches[password]|min_length[8]|max_length[16]'),
             array('field' => 'email', 'label' => 'lang:email', 'rules' => 'required|valid_email'),
+            array('field' => 'agreement', 'label' => 'lang:agreement', 'rules' => 'required'),
         ),
         'update' => array(
             array('field' => 'first_name', 'label' => 'lang:first_name', 'rules' => 'trim'),

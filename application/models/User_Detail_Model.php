@@ -8,6 +8,7 @@ class User_Detail_Model extends CI_Model
     public $rules = array(
         'register' => array(
             array('field' => 'full_name', 'label' => 'lang:full_name', 'rules' => 'required|alpha_space'),
+            array('field' => 'phone_number', 'label' => 'lang:phone_number', 'rules' => 'numeric|min_length[7]|max_length[14]'),
         ),
 	);
 
@@ -15,6 +16,12 @@ class User_Detail_Model extends CI_Model
     {
         $this->gender = array('1' => lang('man'), '0' => lang('woman'));
         return $this->gender;
+    }
+
+    public function read_by_user_id($user_id)
+    {
+        $this->db->where('user_id', $user_id);
+        return $this->db->get($this->table)->row();
     }
 
     public function tournament_register($data)
