@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2017 at 05:28 AM
+-- Generation Time: Apr 06, 2017 at 06:41 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -165,7 +165,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`version`) VALUES
-(4);
+(5);
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ CREATE TABLE `teams` (
   `id` int(11) NOT NULL,
   `team_name` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -231,10 +231,10 @@ CREATE TABLE `team_members` (
   `id` int(11) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `phone_number` varchar(255) NOT NULL,
-  `gender` tinyint(4) NOT NULL,
-  `captain` tinyint(4) NOT NULL,
+  `gender` tinyint(1) NOT NULL,
+  `captain` tinyint(1) NOT NULL,
   `team_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -270,7 +270,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 (1, '127.0.0.1', 'superadmin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'superadmin@superadmin.com', '', NULL, NULL, NULL, 1268889823, 1491299464, 1, 'Super', 'admin', '', '0'),
 (2, '', 'admin', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, NULL, 0, 1491324214, 1, 'Admin', NULL, NULL, NULL),
-(3, '', 'member', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'member@member.com', NULL, NULL, NULL, NULL, 0, 1491449176, 1, 'Member', NULL, NULL, NULL);
+(3, '', 'member', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'member@member.com', NULL, NULL, NULL, NULL, 0, 1491496869, 1, 'Member', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -304,18 +304,18 @@ DROP TABLE IF EXISTS `user_detail`;
 CREATE TABLE `user_detail` (
   `id` int(11) NOT NULL,
   `full_name` varchar(255) NOT NULL,
-  `phone_number` int(11) NOT NULL,
-  `gender` tinyint(4) NOT NULL,
+  `phone_number` varchar(255) NOT NULL,
+  `gender` tinyint(1) NOT NULL,
   `address` text NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user_detail`
 --
 
 INSERT INTO `user_detail` (`id`, `full_name`, `phone_number`, `gender`, `address`, `user_id`) VALUES
-(1, 'Member One', 0, 1, '', 3);
+(1, 'Member One', '12345', 1, '', 3);
 
 -- --------------------------------------------------------
 
@@ -464,7 +464,7 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `user_detail`
 --
 ALTER TABLE `user_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user_privileges`
 --

@@ -2,7 +2,7 @@
 
 Codeigniter 3 with garena.
 
-Demo : <a href="https://codeigniter3app-redzjovi.c9users.io/backend/admin">https://codeigniter3app-redzjovi.c9users.io/backend/admin</a>
+Demo : <a href="https://garena.bodyfitstation.com">https://garena.bodyfitstation.com</a>
 
 ## Installation
 
@@ -11,7 +11,9 @@ Demo : <a href="https://codeigniter3app-redzjovi.c9users.io/backend/admin">https
 3. In terminal, run migration to generate table<br />
 "php index.php migrate version 1"<br />
 "php index.php migrate version 2"<br />
-"php index.php migrate version 3"
+"php index.php migrate version 3"<br />
+"php index.php migrate version 4"<br />
+"php index.php migrate version 5"
 
 ## Included hooks
 <a href="https://github.com/johngerome/CodeIgniter-Minifyhtml-hooks">CodeIgniter-Minifyhtml-hooks</a><br />
