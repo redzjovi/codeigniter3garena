@@ -1,6 +1,6 @@
 <div class="content">
     <div class="text-right">
-        <?php echo lang('hi').', '.$user->first_name.' [ '.
+        <?php echo lang('hi').', '.$user_detail->full_name.' [ '.
             anchor('tournament/logout', lang('logout'))
             .' ]'; ?>
     </div>

@@ -1,6 +1,6 @@
 <div class="content">
     <div class="text-right">
-        <?php echo lang('hi').', '.$user->first_name.' [ '.
+        <?php echo lang('hi').', '.$user_detail->full_name.' [ '.
             anchor('tournament/logout', lang('logout'))
             .' ]'; ?>
     </div>
@@ -50,7 +50,7 @@
                     <?php echo form_input('phone_number[0]', set_value('phone_number[0]', $user_detail->phone_number), [
                         'class' => 'form-control',
                         'data-validation' => 'required, number, length',
-                        'data-validation-length' => '4-14',
+                        'data-validation-length' => '7-14',
                         'placeholder' => lang('phone_number'),
                     ]); ?>
                     <?php echo form_error('phone_number[0]', '<p class="text-danger">', '</p>'); ?>
@@ -103,7 +103,7 @@
                     <?php echo form_input('phone_number[1]', set_value('phone_number[1]'), [
                         'class' => 'form-control',
                         'data-validation' => 'required, number, length',
-                        'data-validation-length' => '4-14',
+                        'data-validation-length' => '7-14',
                         'placeholder' => lang('phone_number'),
                     ]); ?>
                     <?php echo form_error('phone_number[1]', '<p class="text-danger">', '</p>'); ?>
@@ -156,7 +156,7 @@
                     <?php echo form_input('phone_number[2]', set_value('phone_number[2]'), [
                         'class' => 'form-control',
                         'data-validation' => 'required, number, length',
-                        'data-validation-length' => '4-14',
+                        'data-validation-length' => '7-14',
                         'placeholder' => lang('phone_number'),
                     ]); ?>
                     <?php echo form_error('phone_number[2]', '<p class="text-danger">', '</p>'); ?>

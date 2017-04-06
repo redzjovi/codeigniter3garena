@@ -119,7 +119,7 @@ class Tournament extends Frontend_Controller
     public function successful_registration()
     {
         $vars['page_title'] = lang('successful_registration').'!';
-        $vars['user'] = $this->ion_auth->user()->row();
+        $vars['user_detail'] = $this->User_Detail_Model->read_by_user_id($this->ion_auth->user()->row()->id);
         $this->view('tournament/successful_registration', $vars);
     }
 }
