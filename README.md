@@ -1,6 +1,6 @@
 ## Synopsis
 
-Codeigniter 3, with privileges, groups, users, menu management.
+Codeigniter 3 with garena.
 
 Demo : <a href="https://codeigniter3app-redzjovi.c9users.io/backend/admin">https://codeigniter3app-redzjovi.c9users.io/backend/admin</a>
 
@@ -19,3 +19,6 @@ Demo : <a href="https://codeigniter3app-redzjovi.c9users.io/backend/admin">https
 ## Included libraries
 <a href="https://github.com/benedmunds/CodeIgniter-Ion-Auth">CodeIgniter-Ion-Auth</a><br />
 <a href="https://github.com/chriskacerguis/codeigniter-restserver">codeigniter-restserver</a>
+
+## Included js
+<a href="http://www.formvalidator.net/">jQuery Form Validator</a>
