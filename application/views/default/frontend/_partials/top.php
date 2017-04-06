@@ -8,7 +8,10 @@
 <div class="garena-top-logo row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <img src="<?php echo base_url('assets/Garena_slice/TITLE/garena_title.png'); ?>">
+        <?php echo anchor(site_url(), img([
+            'class' => 'pull-right',
+            'src' => base_url('assets/Garena_slice/TITLE/garena_title.png'),
+        ])); ?>
     </div>
     <div class="col-md-4"></div>
 </div>
