@@ -26,6 +26,12 @@ class Users_Model extends CI_Model
             array('field' => 'password_confirm', 'label' => 'lang:password_confirm', 'rules' => 'required|matches[password]'),
             array('field' => 'groups[]', 'label' => 'lang:groups', 'rules' => 'required|integer'),
         ),
+        'register' => array(
+            array('field' => 'username', 'label' => 'lang:username', 'rules' => 'required|alpha_numeric|min_length[6]|max_length[15]|is_unique[users.username]'),
+            array('field' => 'password', 'label' => 'lang:password', 'rules' => 'required|min_length[8]|max_length[16]'),
+            array('field' => 'password_confirm', 'label' => 'lang:password_confirm', 'rules' => 'required|matches[password]|min_length[8]|max_length[16]'),
+            array('field' => 'email', 'label' => 'lang:email', 'rules' => 'required|valid_email'),
+        ),
         'update' => array(
             array('field' => 'first_name', 'label' => 'lang:first_name', 'rules' => 'trim'),
             array('field' => 'last_name', 'label' => 'lang:last_name', 'rules' => 'trim'),
@@ -39,6 +45,12 @@ class Users_Model extends CI_Model
             array('field' => 'user_id', 'label' => 'lang:user_id', 'rules' => 'trim|integer|required'),
         ),
 	);
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Groups_Model');
+    }
 
     public function check_login()
 	{
@@ -157,5 +169,18 @@ class Users_Model extends CI_Model
 		$this->db->where_not_in('id', $id);
 		return $this->db->count_all_results($this->table);
 	}
+
+    public function tournament_register($data)
+    {
+        $username = $data['username'];
+        $password = $data['password'];
+        $email = $data['email'];
+        $additional_data = array(
+            'phone' => $data['phone_number'],
+        );
+        $group = $this->Groups_Model->read_by_name('members')->id;
+
+        $user_id = $this->ion_auth->register($username, $password, $email, $additional_data, $group);
+        return $user_id;
+    }
 }
-?>

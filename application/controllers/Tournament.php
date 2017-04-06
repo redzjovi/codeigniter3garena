@@ -52,8 +52,35 @@ class Tournament extends Frontend_Controller
 
     public function register()
     {
-        $vars['page_title'] = lang('account_registration');
-        $this->view('tournament/register', $vars);
+        $logged_in = $this->j_auth->logged_in(FALSE);
+		if ($logged_in === true) // check if logged in == true
+        {
+            if ($this->Teams_Model->is_registered_user_id($this->ion_auth->user()->row()->id) === true) // check if registered
+                redirect('tournament/successful_registration');
+
+            redirect('tournament/registration');
+        }
+
+        $rules = $this->Users_Model->rules['register']; // rules users
+        $this->form_validation->set_rules($rules);
+
+        $rules = $this->User_Detail_Model->rules['register']; // rules user_detail
+        $this->form_validation->set_rules($rules);
+
+        if ($this->form_validation->run() === TRUE)
+        {
+            $data = $this->input->post();
+            $data['user_id'] = $this->Users_Model->tournament_register($data); // create users
+            $this->User_Detail_Model->tournament_register($data); // create user detail
+
+            $this->session->set_flashdata('message_success', lang('data_create_success'));
+            redirect('tournament/login');
+        }
+        else
+        {
+            $vars['page_title'] = lang('account_registration');
+            $this->view('tournament/register', $vars);
+        }
     }
 
     public function registration()

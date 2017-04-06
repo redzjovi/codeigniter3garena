@@ -21,6 +21,12 @@ class Groups_Model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+    function read_by_name($name)
+    {
+        $this->db->where('name', $name);
+        return $this->db->get($this->table)->row();
+    }
+
 	function check_unique_group_name()
 	{
 		$group_id = $this->input->post('group_id');
