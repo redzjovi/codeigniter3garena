@@ -1,0 +1,47 @@
+a {
+	color: gold;
+}
+.content {
+	background-color: black;
+	border-color: white;
+    padding: 20px;
+}
+.garena-body {
+	background-image: url('Garena_slice/BG/BG.png');
+	background-position-x: 50%;
+	color: white;
+}
+.garena-bottom-logo {}
+.garena-bottom-logo-facebook {
+	float: right;
+    margin: 0 5px;
+}
+.garena-bottom-logo-twitter {
+	float: right;
+    margin: 0 5px;
+}
+.garena-bottom-logo-youtube {
+	float: right;
+    margin-left: 5px;
+}
+.garena-top-logo img {
+	width: 100%;
+}
+.garena-top-menu-left {
+    background-color: silver;
+    color: blue;
+}
+.garena-top-menu-middle {
+    background-color: silver;
+    color: blue;
+}
+.garena-top-menu-right {
+    background-color: silver;
+    color: blue;
+}
+.garena-top-title img {
+    width: 100%;
+}
+.modal {
+    color: black;
+}

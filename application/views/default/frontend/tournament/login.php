@@ -1,5 +1,7 @@
-<div class="content">
-    <h4 class="text-center"><?php echo $page_title; ?></h4>
+<div class="content row">
+    <div class="row text-center">
+        <?php echo img(['src' => base_url('assets/Garena_slice/REGISTER/LOGIN/login_title.png')]); ?>
+    </div>
 
     <?php echo form_open('', ['class' => 'form-horizontal', 'style' => 'padding: 10px;']); ?>
 
@@ -45,6 +47,16 @@
                 </div>
                 <div class="col-md-3">
                     <?php echo form_submit('login', lang('login'), ['class' => 'btn btn-block btn-danger']); ?>
+                    <?php
+                     // echo form_button(
+                    //     'login',
+                    //     img([
+                    //         'class' => 'pull-right',
+                    //         'src' => base_url('assets/Garena_slice/REGISTER/LOGIN/login_button_normal.png'),
+                    //     ]),
+                    //     ['type' => 'submit']
+                    // );
+                    ?>
                 </div>
             </div>
         </div>

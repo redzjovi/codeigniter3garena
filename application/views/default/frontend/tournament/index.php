@@ -1,5 +1,7 @@
-<div class="content">
-    <h4 class="text-center"><?php echo $page_title; ?></h4>
+<div class="content row">
+    <div class="row text-center">
+        <?php echo img(['src' => base_url('assets/Garena_slice/REGISTER/INFO/garena_turnament_3vs3_text.png')]); ?>
+    </div>
     <hr />
 
     <div>
@@ -7,7 +9,12 @@
     </div>
 </div>
 
-<div>
-    <?php echo anchor('tournament/register', 'Register'); ?>
-    <?php echo anchor('tournament/login', 'Login', ['class' => 'btn btn-default pull-right']); ?>
+<div class="row">
+    <?php echo anchor('tournament/register', img([
+        'src' => base_url('assets/Garena_slice/REGISTER/INFO/registrasi.png')
+    ])); ?>
+    <?php echo anchor('tournament/login', img([
+        'class' => 'pull-right',
+        'src' => base_url('assets/Garena_slice/REGISTER/INFO/button_login_normal.png'),
+    ])); ?>
 </div>

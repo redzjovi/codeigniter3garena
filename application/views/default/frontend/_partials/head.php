@@ -15,6 +15,7 @@
 	<link href="<?php echo base_url(); ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/custom.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/garena_custom.css" rel="stylesheet">
 
 	<script src="<?php echo base_url(); ?>assets/jquery/dist/jquery.min.js"></script>
 </head>

@@ -1,5 +1,7 @@
 <div class="content">
-    <h4 class="text-center"><?php echo $page_title; ?></h4>
+    <div class="row text-center">
+        <?php echo img(['src' => base_url('assets/Garena_slice/REGISTER/REGISTRASI_AKUN/registrasi_akun_title.png')]); ?>
+    </div>
 
     <?php echo form_open('', ['class' => 'form-horizontal', 'style' => 'padding: 10px;']); ?>
 
@@ -145,7 +147,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title text-center"><?php echo lang('terms_and_regulations'); ?></h4>
+                                    <h4 class="modal-title text-center">
+                                        <?php echo lang('terms_and_regulations'); ?>
+                                    </h4>
                                 </div>
                                 <div class="modal-body">
                                     What is Lorem Ipsum?
@@ -160,7 +164,6 @@
 
                                     The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                                 </div>
-                                <div class="modal-footer"></div>
                             </div>
                         </div>
                     </div>

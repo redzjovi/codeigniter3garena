@@ -1,4 +1,4 @@
-<body>
+<body class="garena-body">
     <div class="container">
 
         <?php $this->load->view($top); ?>
@@ -30,7 +30,8 @@
 
     	<?php // $this->load->view($right); ?>
 
-    	<?php $this->load->view($bottom); ?>
+    	<br />
+        <?php $this->load->view($bottom); ?>
 
     	<?php if (ENVIRONMENT == 'development') : ?>
     		<p class="text-center text-muted">

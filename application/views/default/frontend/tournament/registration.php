@@ -5,7 +5,9 @@
             .' ]'; ?>
     </div>
 
-    <h4 class="text-center"><?php echo $page_title; ?></h4>
+    <div class="row text-center">
+        <?php echo img(['src' => base_url('assets/Garena_slice/REGISTER/FORM_REGISTRASI/form_registration_title.png')]); ?>
+    </div>
 
     <?php echo form_open('', ['class' => 'form-horizontal', 'style' => 'padding: 10px;']); ?>
 
@@ -218,7 +220,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <?php echo form_submit('register', lang('register'), ['class' => 'btn btn-block btn-default']); ?>
+            <?php echo form_submit('register', lang('register'), ['class' => 'btn btn-block btn-danger']); ?>
         </div>
     </div>
 
