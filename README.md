@@ -2,6 +2,8 @@
 
 Codeigniter 3 with garena.
 
+Test inside assets/Garena WebDev Test/
+
 Demo : <a href="https://garena.bodyfitstation.com">https://garena.bodyfitstation.com</a>
 
 ## Installation
