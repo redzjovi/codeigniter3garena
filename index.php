@@ -305,6 +305,13 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
+    if (file_exists('.env'))
+    {
+        require __DIR__.'/vendor/autoload.php';
+        $dotenv = new Dotenv\Dotenv(__DIR__);
+        $dotenv->load();
+    }
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

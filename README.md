@@ -4,18 +4,19 @@ Codeigniter 3 with garena.
 
 Test inside assets/Garena WebDev Test/
 
-Demo : <a href="https://garena.bodyfitstation.com">https://garena.bodyfitstation.com</a>
+Demo : <a href="https://codeigniter3garena.herokuapp.com">codeigniter3garena</a>
 
 ## Installation
 
-1. In application/config/, rename config.example.php to config.php, and set base_url
-1. In application/config/, rename database.example.php to database.php, and set username, password, database
-3. In terminal, run migration to generate table<br />
-"php index.php migrate version 1"<br />
-"php index.php migrate version 2"<br />
-"php index.php migrate version 3"<br />
-"php index.php migrate version 4"<br />
-"php index.php migrate version 5"
+1. Copy .env.example to .env, and set all settings
+2. Run command to execute migration and generate table
+```
+php index.php migrate version 1
+php index.php migrate version 2
+php index.php migrate version 3
+php index.php migrate version 4
+php index.php migrate version 5
+```
 
 ## Included hooks
 <a href="https://github.com/johngerome/CodeIgniter-Minifyhtml-hooks">CodeIgniter-Minifyhtml-hooks</a><br />
